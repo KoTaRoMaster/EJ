@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainlzmkgk.ui'
+## Form generated from reading UI file 'maineiyYLl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -9,18 +9,19 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
+                            QMetaObject, QObject, QPoint, QRect,
+                            QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+                           QFont, QFontDatabase, QGradient, QIcon,
+                           QImage, QKeySequence, QLinearGradient, QPainter,
+                           QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCalendarWidget, QComboBox,
-    QFrame, QHBoxLayout, QHeaderView, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+                               QFrame, QHBoxLayout, QHeaderView, QLabel,
+                               QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+                               QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
+                               QVBoxLayout, QWidget)
 import res_rc
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -35,7 +36,14 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
-        self.centralwidget.setStyleSheet(u"border-radius: 12px")
+        self.centralwidget.setStyleSheet(u"QWidget {\n"
+                                         "border-radius: 12px;\n"
+                                         "background-color: rgb(30, 31, 34);\n"
+                                         "}\n"
+                                         "\n"
+                                         "\n"
+                                         "\n"
+                                         "")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -45,21 +53,9 @@ class Ui_MainWindow(object):
         self.startFrame.setObjectName(u"startFrame")
         self.topMenu = QFrame(self.centralwidget)
         self.topMenu.setObjectName(u"topMenu")
-        self.topMenu.setMinimumSize(QSize(32, 32))
-        self.topMenu.setMaximumSize(QSize(16777215, 48))
-        self.topMenu.setStyleSheet(u"QFrame {\n"
-"	background-color: rgb(46, 74, 93);\n"
-"	border-bottom-left-radius: 0;\n"
-"	border-bottom-right-radius: 0;\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"	border-radius:0px;\n"
-"}\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(36, 58, 72);\n"
-"}\n"
-"")
+        self.topMenu.setMinimumSize(QSize(0, 32))
+        self.topMenu.setMaximumSize(QSize(16777215, 32))
+        self.topMenu.setStyleSheet(u"")
         self.topMenu.setFrameShape(QFrame.StyledPanel)
         self.topMenu.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.topMenu)
@@ -74,11 +70,9 @@ class Ui_MainWindow(object):
         self.menuButton.setObjectName(u"menuButton")
         self.menuButton.setMinimumSize(QSize(48, 32))
         self.menuButton.setMaximumSize(QSize(48, 32))
-        self.menuButton.setStyleSheet(u"QPushButton {\n"
-"	border-top-left-radius: 12px;\n"
-"}")
+        self.menuButton.setStyleSheet(u"")
         icon = QIcon()
-        icon.addFile(u":/icons/images/menu_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icons/images/menu.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.menuButton.setIcon(icon)
         self.menuButton.setIconSize(QSize(24, 24))
         self.menuButton.setCheckable(True)
@@ -96,7 +90,7 @@ class Ui_MainWindow(object):
         self.restoreButton.setMaximumSize(QSize(48, 32))
         self.restoreButton.setStyleSheet(u"")
         icon1 = QIcon()
-        icon1.addFile(u":/icons/images/remove_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/icons/images/remove.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.restoreButton.setIcon(icon1)
         self.restoreButton.setIconSize(QSize(24, 24))
         self.restoreButton.setCheckable(False)
@@ -110,7 +104,7 @@ class Ui_MainWindow(object):
         self.minimizeButton.setFocusPolicy(Qt.StrongFocus)
         self.minimizeButton.setStyleSheet(u"")
         icon2 = QIcon()
-        icon2.addFile(u":/icons/images/toast_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/icons/images/toast.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.minimizeButton.setIcon(icon2)
         self.minimizeButton.setIconSize(QSize(24, 24))
 
@@ -122,15 +116,9 @@ class Ui_MainWindow(object):
         self.exitButton.setMinimumSize(QSize(48, 32))
         self.exitButton.setMaximumSize(QSize(48, 32))
         self.exitButton.setAutoFillBackground(False)
-        self.exitButton.setStyleSheet(u"QPushButton {\n"
-"	border-top-right-radius: 12px;\n"
-"}\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(36, 58, 72);\n"
-"}\n"
-"")
+        self.exitButton.setStyleSheet(u"border-color: rgb(255, 255, 255);")
         icon3 = QIcon()
-        icon3.addFile(u":/icons/images/close_FILL0_wght400_GRAD0_opsz24.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/icons/images/close.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.exitButton.setIcon(icon3)
         self.exitButton.setIconSize(QSize(24, 24))
         self.exitButton.setCheckable(False)
@@ -140,83 +128,48 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.exitButton)
 
-
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
-
 
         self.startFrame.addWidget(self.topMenu)
 
-        self.mainMenu = QHBoxLayout()
-        self.mainMenu.setSpacing(6)
+        self.widget = QWidget(self.centralwidget)
+        self.widget.setObjectName(u"widget")
+        self.widget.setStyleSheet(u"QWidget {\n"
+                                  "	background-color: rgb(49, 51, 56);\n"
+                                  "}\n"
+                                  "\n"
+                                  "QPushButton {\n"
+                                  "	border-radius: 5px; \n"
+                                  "	border: 1.5px solid rgb(91,231,255); \n"
+                                  "	background-color: white; \n"
+                                  "	font: 22pt \"Segoe Print\";\n"
+                                  "	color: rgb(255, 255, 255);\n"
+                                  "	background-color: rgb(74, 118, 148);\n"
+                                  "	transition: background-color 2s ease-out 100ms\n"
+                                  "}\n"
+                                  "QPushButton:pressed {\n"
+                                  "	border: 1.4px solid rgb(73,186,205);\n"
+                                  " }\n"
+                                  "QPushButton:hover {\n"
+                                  "	font-size: 16px;\n"
+                                  "	background-color: rgb(109, 174, 218);\n"
+                                  "}")
+        self.mainMenu = QHBoxLayout(self.widget)
+        self.mainMenu.setSpacing(0)
         self.mainMenu.setObjectName(u"mainMenu")
-        self.leftMenu_2 = QFrame(self.centralwidget)
-        self.leftMenu_2.setObjectName(u"leftMenu_2")
-        self.leftMenu_2.setMinimumSize(QSize(200, 0))
-        self.leftMenu_2.setFocusPolicy(Qt.StrongFocus)
-        self.leftMenu_2.setStyleSheet(u"QFrame {\n"
-"background-color: rgb(30, 72, 72);\n"
-"border-top-left-radius: 0;\n"
-"border-top-right-radius: 0;\n"
-"border-bottom-right-radius: 0;\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"	border-radius: 5px; \n"
-"	border: 1.5px solid rgb(91,231,255); \n"
-"	background-color: white; \n"
-"	font: 22pt \"Segoe Print\";\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(74, 118, 148);\n"
-"	transition: background-color 2s ease-out 100ms\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	border: 1.4px solid rgb(73,186,205);\n"
-" }\n"
-"QPushButton:hover {\n"
-"	font-size: 16px;\n"
-"	background-color: rgb(109, 174, 218);\n"
-"}")
-        self.leftMenu_2.setFrameShape(QFrame.StyledPanel)
-        self.leftMenu_2.setFrameShadow(QFrame.Raised)
-        self.shedulesButton = QPushButton(self.leftMenu_2)
-        self.shedulesButton.setObjectName(u"shedulesButton")
-        self.shedulesButton.setGeometry(QRect(20, 20, 173, 54))
-        self.teachersButton = QPushButton(self.leftMenu_2)
-        self.teachersButton.setObjectName(u"teachersButton")
-        self.teachersButton.setGeometry(QRect(20, 90, 173, 54))
-        self.studentsButton = QPushButton(self.leftMenu_2)
-        self.studentsButton.setObjectName(u"studentsButton")
-        self.studentsButton.setGeometry(QRect(20, 160, 173, 54))
-
-        self.mainMenu.addWidget(self.leftMenu_2)
-
-        self.leftMenu = QFrame(self.centralwidget)
+        self.mainMenu.setContentsMargins(0, 0, 0, 0)
+        self.leftMenu = QFrame(self.widget)
         self.leftMenu.setObjectName(u"leftMenu")
         self.leftMenu.setMinimumSize(QSize(200, 0))
         self.leftMenu.setFocusPolicy(Qt.StrongFocus)
         self.leftMenu.setStyleSheet(u"QFrame {\n"
-"background-color: rgb(30, 72, 72);\n"
-"border-top-left-radius: 0;\n"
-"border-top-right-radius: 0;\n"
-"border-bottom-right-radius: 0;\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"	border-radius: 5px; \n"
-"	border: 1.5px solid rgb(91,231,255); \n"
-"	background-color: white; \n"
-"	font: 22pt \"Segoe Print\";\n"
-"	color: rgb(255, 255, 255);\n"
-"	background-color: rgb(74, 118, 148);\n"
-"	transition: background-color 2s ease-out 100ms\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	border: 1.4px solid rgb(73,186,205);\n"
-" }\n"
-"QPushButton:hover {\n"
-"	font-size: 16px;\n"
-"	background-color: rgb(109, 174, 218);\n"
-"}")
+                                    "	border-top-left-radius: 0;\n"
+                                    "	border-top-right-radius: 0;\n"
+                                    "	border-bottom-right-radius: 0;\n"
+                                    "	background-color: rgb(43, 45, 49);\n"
+                                    "}\n"
+                                    "\n"
+                                    "")
         self.leftMenu.setFrameShape(QFrame.StyledPanel)
         self.leftMenu.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.leftMenu)
@@ -227,6 +180,48 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(10)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(-1, 0, -1, 0)
+        self.studentButton = QPushButton(self.leftMenu)
+        self.studentButton.setObjectName(u"studentButton")
+        self.studentButton.setEnabled(True)
+        self.studentButton.setStyleSheet(u"")
+        self.studentButton.setCheckable(True)
+
+        self.verticalLayout_3.addWidget(self.studentButton)
+
+        self.studentButtonsFrame = QFrame(self.leftMenu)
+        self.studentButtonsFrame.setObjectName(u"studentButtonsFrame")
+        self.studentButtonsFrame.setFrameShape(QFrame.StyledPanel)
+        self.studentButtonsFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_15 = QVBoxLayout(self.studentButtonsFrame)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.studentSchedule = QPushButton(self.studentButtonsFrame)
+        self.studentSchedule.setObjectName(u"studentSchedule")
+
+        self.verticalLayout_15.addWidget(self.studentSchedule)
+
+        self.verticalLayout_3.addWidget(self.studentButtonsFrame)
+
+        self.teacherButton = QPushButton(self.leftMenu)
+        self.teacherButton.setObjectName(u"teacherButton")
+        self.teacherButton.setEnabled(True)
+        self.teacherButton.setStyleSheet(u"")
+        self.teacherButton.setCheckable(True)
+
+        self.verticalLayout_3.addWidget(self.teacherButton)
+
+        self.teacherButtonsFrame = QFrame(self.leftMenu)
+        self.teacherButtonsFrame.setObjectName(u"teacherButtonsFrame")
+        self.teacherButtonsFrame.setFrameShape(QFrame.StyledPanel)
+        self.teacherButtonsFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_16 = QVBoxLayout(self.teacherButtonsFrame)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.teacherSchedule = QPushButton(self.teacherButtonsFrame)
+        self.teacherSchedule.setObjectName(u"teacherSchedule")
+
+        self.verticalLayout_16.addWidget(self.teacherSchedule)
+
+        self.verticalLayout_3.addWidget(self.teacherButtonsFrame)
+
         self.adminButton = QPushButton(self.leftMenu)
         self.adminButton.setObjectName(u"adminButton")
         self.adminButton.setEnabled(True)
@@ -235,45 +230,71 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.adminButton)
 
-        self.studentButton = QPushButton(self.leftMenu)
-        self.studentButton.setObjectName(u"studentButton")
-        self.studentButton.setEnabled(True)
-        self.studentButton.setStyleSheet(u"")
-        self.studentButton.setCheckable(False)
+        self.adminButtonsFrame = QFrame(self.leftMenu)
+        self.adminButtonsFrame.setObjectName(u"adminButtonsFrame")
+        self.adminButtonsFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminButtonsFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_11 = QVBoxLayout(self.adminButtonsFrame)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.adminShedulesButton = QPushButton(self.adminButtonsFrame)
+        self.adminShedulesButton.setObjectName(u"adminShedulesButton")
 
-        self.verticalLayout_3.addWidget(self.studentButton)
+        self.verticalLayout_11.addWidget(self.adminShedulesButton)
 
-        self.teacherButton = QPushButton(self.leftMenu)
-        self.teacherButton.setObjectName(u"teacherButton")
-        self.teacherButton.setEnabled(True)
-        self.teacherButton.setStyleSheet(u"")
-        self.teacherButton.setCheckable(False)
+        self.adminTeachersButton = QPushButton(self.adminButtonsFrame)
+        self.adminTeachersButton.setObjectName(u"adminTeachersButton")
 
-        self.verticalLayout_3.addWidget(self.teacherButton)
+        self.verticalLayout_11.addWidget(self.adminTeachersButton)
+
+        self.adminStudentsButton = QPushButton(self.adminButtonsFrame)
+        self.adminStudentsButton.setObjectName(u"adminStudentsButton")
+
+        self.verticalLayout_11.addWidget(self.adminStudentsButton)
+
+        self.adminGroupsButton = QPushButton(self.adminButtonsFrame)
+        self.adminGroupsButton.setObjectName(u"adminGroupsButton")
+
+        self.verticalLayout_11.addWidget(self.adminGroupsButton)
+
+        self.adminLessonsButton = QPushButton(self.adminButtonsFrame)
+        self.adminLessonsButton.setObjectName(u"adminLessonsButton")
+
+        self.verticalLayout_11.addWidget(self.adminLessonsButton)
+
+        self.verticalLayout_3.addWidget(self.adminButtonsFrame)
+
+        self.optionsButtons = QPushButton(self.leftMenu)
+        self.optionsButtons.setObjectName(u"optionsButtons")
+
+        self.verticalLayout_3.addWidget(self.optionsButtons)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
 
+        self.leaveButton = QPushButton(self.leftMenu)
+        self.leaveButton.setObjectName(u"leaveButton")
+
+        self.verticalLayout_3.addWidget(self.leaveButton)
 
         self.verticalLayout_4.addLayout(self.verticalLayout_3)
 
-
         self.mainMenu.addWidget(self.leftMenu)
 
-        self.mainWindows = QStackedWidget(self.centralwidget)
+        self.mainWindows = QStackedWidget(self.widget)
         self.mainWindows.setObjectName(u"mainWindows")
         self.mainWindows.setEnabled(True)
-        self.mainWindows.setStyleSheet(u"background-color: rgb(52, 83, 104);\n"
-"border-top-left-radius: 0;\n"
-"border-top-right-radius: 0;\n"
-"border-bottom-left-radius: 0;")
+        self.mainWindows.setStyleSheet(u"QWidget {\n"
+                                       "	border-top-left-radius: 0;\n"
+                                       "	border-top-right-radius: 0;\n"
+                                       "	border-bottom-left-radius: 0;\n"
+                                       "}")
         self.adminPage = QWidget()
         self.adminPage.setObjectName(u"adminPage")
         self.verticalLayout_10 = QVBoxLayout(self.adminPage)
         self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_10.setContentsMargins(0, 0, 30, 0)
         self.adminStackedWidget = QStackedWidget(self.adminPage)
         self.adminStackedWidget.setObjectName(u"adminStackedWidget")
         self.adminStackedWidget.setStyleSheet(u"background-color: rgb(255, 134, 229);")
@@ -288,9 +309,6 @@ class Ui_MainWindow(object):
         self.frame.setMinimumSize(QSize(0, 200))
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
-        self.label = QLabel(self.frame)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(20, 10, 161, 71))
         self.calendarWidget = QCalendarWidget(self.frame)
         self.calendarWidget.setObjectName(u"calendarWidget")
         self.calendarWidget.setGeometry(QRect(480, 0, 312, 191))
@@ -315,13 +333,14 @@ class Ui_MainWindow(object):
         self.adminSheduleTable.setStyleSheet(u"background-color: rgb(148, 156, 158);")
         self.adminSheduleTable.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.adminSheduleTable.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.adminSheduleTable.setSelectionMode(QAbstractItemView.SingleSelection)
         self.adminSheduleTable.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.adminSheduleTable.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.adminSheduleTable.setRowCount(7)
         self.adminSheduleTable.setColumnCount(20)
         self.adminSheduleTable.horizontalHeader().setVisible(True)
         self.adminSheduleTable.horizontalHeader().setMinimumSectionSize(0)
-        self.adminSheduleTable.horizontalHeader().setDefaultSectionSize(190)
+        self.adminSheduleTable.horizontalHeader().setDefaultSectionSize(170)
         self.adminSheduleTable.horizontalHeader().setHighlightSections(False)
         self.adminSheduleTable.verticalHeader().setVisible(True)
         self.adminSheduleTable.verticalHeader().setMinimumSectionSize(0)
@@ -341,7 +360,31 @@ class Ui_MainWindow(object):
         self.students.setObjectName(u"students")
         self.label_2 = QLabel(self.students)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(360, 260, 49, 16))
+        self.label_2.setGeometry(QRect(10, 10, 49, 16))
+        self.studentTableWidget = QTableWidget(self.students)
+        if (self.studentTableWidget.columnCount() < 4):
+            self.studentTableWidget.setColumnCount(4)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.studentTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.studentTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.studentTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.studentTableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.studentTableWidget.setObjectName(u"studentTableWidget")
+        self.studentTableWidget.setGeometry(QRect(0, 100, 851, 481))
+        self.studentTableWidget.setStyleSheet(u"background-color: rgb(61, 86, 115);")
+        self.studentTableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.studentTableWidget.setSelectionMode(QAbstractItemView.NoSelection)
+        self.studentTableWidget.setRowCount(0)
+        self.studentTableWidget.setColumnCount(4)
+        self.studentTableWidget.horizontalHeader().setMinimumSectionSize(35)
+        self.studentTableWidget.horizontalHeader().setDefaultSectionSize(200)
+        self.addStudentButton = QPushButton(self.students)
+        self.addStudentButton.setObjectName(u"addStudentButton")
+        self.addStudentButton.setGeometry(QRect(110, 620, 471, 24))
+        self.addStudentButton.setStyleSheet(u"background-color: rgb(52, 83, 104);")
         self.adminStackedWidget.addWidget(self.students)
 
         self.verticalLayout_10.addWidget(self.adminStackedWidget)
@@ -369,9 +412,9 @@ class Ui_MainWindow(object):
         self.comboBoxFrame.setMinimumSize(QSize(200, 0))
         self.comboBoxFrame.setMaximumSize(QSize(200, 16777215))
         self.comboBoxFrame.setStyleSheet(u"QComboBox {\n"
-"	\n"
-"	background-color: rgb(134, 255, 255);\n"
-"}")
+                                         "	\n"
+                                         "	background-color: rgb(134, 255, 255);\n"
+                                         "}")
         self.comboBoxFrame.setFrameShape(QFrame.StyledPanel)
         self.comboBoxFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.comboBoxFrame)
@@ -387,7 +430,6 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName(u"groupBox")
 
         self.verticalLayout_5.addWidget(self.groupBox)
-
 
         self.horizontalLayout_4.addWidget(self.comboBoxFrame)
 
@@ -438,7 +480,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.leftGroupLabel)
 
-
         self.horizontalLayout_6.addWidget(self.lefrInfoFrame)
 
         self.rightInfoFrame = QFrame(self.infroFrame)
@@ -464,9 +505,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.rightGroupLabel)
 
-
         self.horizontalLayout_6.addWidget(self.rightInfoFrame)
-
 
         self.horizontalLayout_5.addWidget(self.infroFrame)
 
@@ -478,9 +517,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.imageFrame)
 
-
         self.horizontalLayout_4.addWidget(self.userInfroFrame)
-
 
         self.verticalLayout.addWidget(self.ratingTopFrame)
 
@@ -498,37 +535,37 @@ class Ui_MainWindow(object):
             self.ratingWidget.setColumnCount(39)
         if (self.ratingWidget.rowCount() < 22):
             self.ratingWidget.setRowCount(22)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.ratingWidget.setItem(1, 0, __qtablewidgetitem)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.ratingWidget.setItem(1, 0, __qtablewidgetitem4)
         self.ratingWidget.setObjectName(u"ratingWidget")
         self.ratingWidget.setEnabled(True)
         self.ratingWidget.setFocusPolicy(Qt.StrongFocus)
         self.ratingWidget.setStyleSheet(u"QTableWidget, QHeaderView   {\n"
-"    background-color: #333333;\n"
-"    color: #fffff8;\n"
-"}\n"
-"\n"
-"QHeaderView::section, QTableWidget QTableCornerButton::section {\n"
-"    background-color: #646464;\n"
-"    padding: 4px;\n"
-"    border: 1px solid #fffff8;\n"
-"    font-size: 10pt;\n"
-"}\n"
-"\n"
-"QHeaderView::section:vertical {\n"
-"   width: 150px;\n"
-"}\n"
-"\n"
-"QTableWidget {\n"
-"    gridline-color: #fffff8;\n"
-"    font-size: 12pt;\n"
-"}\n"
-"QTableWidget::item::selected {\n"
-"	\n"
-"	background-color: rgb(27, 27, 27);\n"
-"}\n"
-"")
-        self.ratingWidget.setEditTriggers(QAbstractItemView.AnyKeyPressed|QAbstractItemView.DoubleClicked)
+                                        "    background-color: #333333;\n"
+                                        "    color: #fffff8;\n"
+                                        "}\n"
+                                        "\n"
+                                        "QHeaderView::section, QTableWidget QTableCornerButton::section {\n"
+                                        "    background-color: #646464;\n"
+                                        "    padding: 4px;\n"
+                                        "    border: 1px solid #fffff8;\n"
+                                        "    font-size: 10pt;\n"
+                                        "}\n"
+                                        "\n"
+                                        "QHeaderView::section:vertical {\n"
+                                        "   width: 150px;\n"
+                                        "}\n"
+                                        "\n"
+                                        "QTableWidget {\n"
+                                        "    gridline-color: #fffff8;\n"
+                                        "    font-size: 12pt;\n"
+                                        "}\n"
+                                        "QTableWidget::item::selected {\n"
+                                        "	\n"
+                                        "	background-color: rgb(27, 27, 27);\n"
+                                        "}\n"
+                                        "")
+        self.ratingWidget.setEditTriggers(QAbstractItemView.AnyKeyPressed | QAbstractItemView.DoubleClicked)
         self.ratingWidget.setDragEnabled(False)
         self.ratingWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.ratingWidget.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
@@ -553,16 +590,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.ratingWidget)
 
-
         self.verticalLayout.addWidget(self.ratingFrame_2)
 
         self.mainWindows.addWidget(self.ratingFrame)
 
         self.mainMenu.addWidget(self.mainWindows)
 
-
-        self.startFrame.addLayout(self.mainMenu)
-
+        self.startFrame.addWidget(self.widget)
 
         self.verticalLayout_2.addLayout(self.startFrame)
 
@@ -571,13 +605,15 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.restoreButton.clicked.connect(MainWindow.lower)
         self.menuButton.toggled.connect(self.leftMenu.setHidden)
-        self.menuButton.toggled.connect(self.leftMenu_2.setVisible)
+        self.studentButton.toggled.connect(self.studentButtonsFrame.setHidden)
+        self.teacherButton.toggled.connect(self.teacherButtonsFrame.setHidden)
+        self.adminButton.toggled.connect(self.adminButtonsFrame.setHidden)
 
         self.exitButton.setDefault(False)
         self.mainWindows.setCurrentIndex(0)
 
-
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
@@ -586,18 +622,34 @@ class Ui_MainWindow(object):
         self.restoreButton.setText("")
         self.minimizeButton.setText("")
         self.exitButton.setText("")
-        self.shedulesButton.setText(QCoreApplication.translate("MainWindow", u"shedules", None))
-        self.teachersButton.setText(QCoreApplication.translate("MainWindow", u"teachers", None))
-        self.studentsButton.setText(QCoreApplication.translate("MainWindow", u"students", None))
-        self.adminButton.setText(QCoreApplication.translate("MainWindow", u"admin", None))
         self.studentButton.setText(QCoreApplication.translate("MainWindow", u"student", None))
+        self.studentSchedule.setText(QCoreApplication.translate("MainWindow", u"shedules", None))
         self.teacherButton.setText(QCoreApplication.translate("MainWindow", u"teacher", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0441\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
+        self.teacherSchedule.setText(QCoreApplication.translate("MainWindow", u"shedules", None))
+        self.adminButton.setText(QCoreApplication.translate("MainWindow", u"admin", None))
+        self.adminShedulesButton.setText(QCoreApplication.translate("MainWindow", u"shedules", None))
+        self.adminTeachersButton.setText(QCoreApplication.translate("MainWindow", u"teachers", None))
+        self.adminStudentsButton.setText(QCoreApplication.translate("MainWindow", u"students", None))
+        self.adminGroupsButton.setText(QCoreApplication.translate("MainWindow", u"groups", None))
+        self.adminLessonsButton.setText(QCoreApplication.translate("MainWindow", u"lessons", None))
+        self.optionsButtons.setText(QCoreApplication.translate("MainWindow", u"options", None))
+        self.leaveButton.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"teachers", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"students", None))
+        ___qtablewidgetitem = self.studentTableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u0424\u0418\u041e", None));
+        ___qtablewidgetitem1 = self.studentTableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0447\u0442\u0430", None));
+        ___qtablewidgetitem2 = self.studentTableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(
+            QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None));
+        self.addStudentButton.setText(QCoreApplication.translate("MainWindow",
+                                                                 u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0443\u0447\u0435\u043d\u0438\u043a\u0430",
+                                                                 None))
         self.leftTypeLabel.setText(QCoreApplication.translate("MainWindow", u"lType", None))
         self.leftNameLabel.setText(QCoreApplication.translate("MainWindow", u"\u0424\u0418\u041e", None))
-        self.leftGroupLabel.setText(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None))
+        self.leftGroupLabel.setText(
+            QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None))
         self.rightTypeLabel.setText("")
         self.rightNameLabel.setText(QCoreApplication.translate("MainWindow", u"rName", None))
         self.rightGroupLabel.setText(QCoreApplication.translate("MainWindow", u"rGroup", None))
@@ -607,5 +659,6 @@ class Ui_MainWindow(object):
         self.ratingWidget.setSortingEnabled(__sortingEnabled)
 
     # retranslateUi
+
 
 from PySide6.QtSvg import QSvgRenderer
