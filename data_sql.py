@@ -457,3 +457,64 @@ class Connect:
             print(f'Exception: {ex}, Time: {datetime.now()}')
             self.connect()
             return self.delete_schedule(date, group, id_count)
+
+    def insert_student(self, name, email, group):
+        try:
+            name_ = name.split(' ')
+            sName = name_[1]
+            sFirstName = name_[0]
+            sSecondName = None
+            if len(name_) == 3:
+                sSecondName = name_[2]
+            query = ("INSERT INTO `students` (`name`, `first_name`, `second_name`, `email`, `group`)"
+                     f"VALUES('{sName}','{sFirstName}','{sSecondName}','{email}','{group}')")
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Exception as ex:
+            print(f'Exception: {ex}, Time: {datetime.now()}')
+            self.connect()
+            return self.insert_student(name, email, group)
+
+    def delete_student(self, email):
+        try:
+            query = ("DELETE FROM `students` "
+                     f"WHERE email = '{email}'")
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Exception as ex:
+            print(f'Exception: {ex}, Time: {datetime.now()}')
+            self.connect()
+            return self.delete_student(email)
+
+    def update_student(self, name, email, group, prevName, prevEmail, prevGroup):
+        try:
+            name_ = name.split(' ')
+            sName = name_[1]
+            sFirstName = name_[0]
+            sSecondName = name_[2]
+
+            prevName_ = prevName.split(' ')
+            pName = prevName_[1]
+            pFirstName = prevName_[0]
+            pSecondName = prevName_[2]
+
+            emailQuery = (f"AND `email` IS NULL ")
+            if prevEmail:
+                emailQuery = (f"AND `email` = '{prevEmail}' ")
+
+            query = (f"UPDATE `students` SET `name` = '{sName}', "
+                     f"`first_name` = '{sFirstName}', "
+                     f"`second_name` = '{sSecondName}', "
+                     f"`email` = '{email}', "
+                     f"`group` = '{group}' "
+                     f"WHERE `name` = '{pName}' "
+                     f"AND `first_name` = '{pFirstName}' "
+                     f"AND `second_name` = '{pSecondName}' "
+                     f"{emailQuery}"
+                     f"AND `group` = '{prevGroup}'")
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Exception as ex:
+            print(f'Exception: {ex}, Time: {datetime.now()}')
+            self.connect()
+            return self.delete_student(email)

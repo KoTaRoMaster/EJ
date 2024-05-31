@@ -1,55 +1,17 @@
-import time
+from PySide6.QtWidgets import QMainWindow, QButtonGroup, QTableWidgetItem, QAbstractItemView, QWidget, QHBoxLayout
+from PySide6.QtGui import QIcon
+from PySide6.QtCore import Qt, QSize
+from PySide6.QtSvg import QSvgRenderer
 
-from PySide6.QtWidgets import QMainWindow, QWidget, QButtonGroup, QTableWidgetItem, QApplication, QAbstractItemView, \
-    QComboBox
-from PySide6.QtGui import QSinglePointEvent, QDrag
-from PySide6.QtCore import Slot, QObject, Signal
+from Windows.MainWindow import Ui_MainWindow
+from Windows.StudentWindow import Ui_StudentWindow
+from Windows.TeacherWindow import Ui_TeacherWindow
 
-import ui.reg_ui
-from ui.main_ui import Ui_MainWindow
-from PySide6.QtCore import Qt, QMimeData, QMimeType
-import threading
+from CustomClasses.TableQPushButton import TableQPushButton
+from CustomClasses.TableQComboBox import TableQComboBox
+
 from data_sql import Connect
-import os
-
-
-class TableComboBox(QComboBox):
-    speak = Signal()
-
-    def __init__(self, column: int, row: int, con: Connect, ui: Ui_MainWindow):
-        super(TableComboBox, self).__init__()
-        self.speak.connect(self.updateSQLDate)
-        self.column = column
-        self.row = row
-        self.text = None
-        self.con = con
-        self.ui = ui
-
-    def speakingMethod(self, text):
-        self.text = text
-        self.speak.emit()
-
-    def updateSQLDate(self):
-        selectedDate = self.ui.calendarWidget.selectedDate().toPython()
-        group = self.ui.adminSheduleTable.horizontalHeaderItem(self.column).text()
-        idCount = self.row + 1
-        lesson = self.ui.adminSheduleTable.cellWidget(self.row, self.column).currentText()
-        lesson_ = ' '.join(lesson.split('\n')[0].split(' ')[:-1])
-        schedule = self.con.get_schedule_group(selectedDate, group, idCount)
-        if not schedule:
-            if lesson_ != 'Нет':
-                print('Insert_schedule', selectedDate, group, lesson_, idCount)
-                self.con.insert_schedule(selectedDate, group, lesson_, idCount)
-            return
-
-        if schedule[0] != lesson_:
-            if lesson_ == 'Нет':
-                print('Delete_schedule', selectedDate, group, lesson, idCount)
-                self.con.delete_schedule(selectedDate, group, idCount)
-                return
-
-            print('Update_schedule', selectedDate, group, lesson_, idCount)
-            self.con.update_schedule(selectedDate, group, lesson_, idCount)
+import re
 
 
 class MainWindow(QMainWindow):
@@ -60,32 +22,57 @@ class MainWindow(QMainWindow):
         # self.user = user
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        # Start StudentWindow
+        self.studentWindow = QMainWindow()
+        self.studentUi = Ui_StudentWindow()
+
+        self.studentUi.setupUi(self.studentWindow)
+
+        self.studentWindow.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.studentWindow.setAttribute(Qt.WA_NoSystemBackground, True)
+        self.studentWindow.setWindowFlags(Qt.FramelessWindowHint)
+
+        self.studentUi.cancelButton.clicked.connect(self.closeStudentWindow)
+        # End StudentWindow
+
+        # Start TeacherWindow
+        self.teacherWindow = QMainWindow()
+        self.teacherUi = Ui_TeacherWindow()
+
+        self.teacherUi.setupUi(self.teacherWindow)
+
+        self.teacherWindow.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.teacherWindow.setAttribute(Qt.WA_NoSystemBackground, True)
+        self.teacherWindow.setWindowFlags(Qt.FramelessWindowHint)
+
+        self.teacherUi.cancelButton.clicked.connect(self.closeTeacherWindow)
+        # End TeacherWindow
+
         self.check = False
         self.items = []
         self.cellCheck = False
 
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WA_NoSystemBackground, True)
-
         self.setWindowFlags(Qt.FramelessWindowHint)
 
-        self.buttonGroup = QButtonGroup()
-        self.buttonGroup.setExclusive(True)
-
-        self.buttonGroup.addButton(self.ui.adminButton, 0)
-        self.buttonGroup.addButton(self.ui.studentButton, 1)
-        self.buttonGroup.addButton(self.ui.teacherButton, 2)
-
-        self.buttonGroup.buttonClicked.connect(self.load)
+        self.ui.studentButton.setChecked(True)
+        self.ui.teacherButton.setChecked(True)
+        self.ui.adminButton.setChecked(True)
 
         self.adminButtonGroup = QButtonGroup()
         self.adminButtonGroup.setExclusive(True)
 
-        self.adminButtonGroup.addButton(self.ui.shedulesButton, 0)
-        self.adminButtonGroup.addButton(self.ui.teachersButton, 1)
-        self.adminButtonGroup.addButton(self.ui.studentsButton, 2)
+        self.adminButtonGroup.addButton(self.ui.adminShedulesButton, 0)
+        self.adminButtonGroup.addButton(self.ui.adminTeachersButton, 1)
+        self.adminButtonGroup.addButton(self.ui.adminStudentsButton, 2)
+        self.adminButtonGroup.addButton(self.ui.adminGroupsButton, 3)
+        self.adminButtonGroup.addButton(self.ui.adminLessonsButton, 4)
 
         self.adminButtonGroup.buttonClicked.connect(self.adminButtons)
+
+        self.ui.addStudentButton.clicked.connect(self.addStudentWindowOpen)
 
         self.ui.minimizeButton.clicked.connect(self.showMinMaxWindow)
 
@@ -100,9 +87,6 @@ class MainWindow(QMainWindow):
 
         self.ui.topMenu.mouseMoveEvent = self.moveWindow
 
-        self.ui.menuButton.toggled.connect(self.menuButtonToggled)
-        self.menuButtonToggled(False)
-
         # self.load()
 
     def adminButtons(self, button):
@@ -112,28 +96,53 @@ class MainWindow(QMainWindow):
             case 'shedules':
                 self.loadSchedulesFrame()
             case 'teachers':
-                print('teachers')
+                self.loadTeachersTable()
             case 'students':
-                print('students')
+                self.loadStudentsTable()
 
-    def loadSchedulesFrame(self):
-        groups = self.con.get_groups()
-        self.ui.adminSheduleTable.setColumnCount(len(groups))
-        cellSizeHorizontal = 190
-        self.ui.adminSheduleTable.setMinimumSize(cellSizeHorizontal * len(groups) + 15, 461)
-        self.ui.adminSheduleTable.setMaximumSize(cellSizeHorizontal * len(groups) + 15, 461)
-        self.ui.adminSheduleTable.setHorizontalHeaderLabels(groups)
-        for column in range(self.ui.adminSheduleTable.columnCount()):
-            currentGroup = self.ui.adminSheduleTable.horizontalHeaderItem(column).text()
-            lessons = self.con.get_lessons_group(currentGroup)
-            lessons_ = [f'{lesson[0]} {lesson[1]}\n{lesson[3]} {lesson[2][0]}. {lesson[4][0]}.' for lesson in lessons]
-            for row in range(self.ui.adminSheduleTable.rowCount()):
-                scheduleComboBox = TableComboBox(column, row, self.con, self.ui)
-                scheduleComboBox.addItem('Нет занятий')
-                scheduleComboBox.addItems(lessons_)
-                scheduleComboBox.currentTextChanged.connect(scheduleComboBox.speakingMethod)
-                self.ui.adminSheduleTable.setCellWidget(row, column, scheduleComboBox)
-        self.schedulesFrame()
+    def addButtonClicked(self):
+        print('addButtonClicked')
+        fullName = self.studentUi.fullNameInput.text()
+        email = self.studentUi.emailInput.text()
+        group = self.studentUi.groupBox.currentText()
+
+        fullName_ = fullName.split(' ')
+        pattern = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
+        email_ = pattern.search(email)
+
+        if any([False if 2 <= len(fullName_) <= 3 else True, False if email_ else True]):
+            print('Неправильно введено ФИО или почта')
+            return
+        if self.con.get_user(email):
+            print('Уже есть пользователь с такой почтой')
+            return
+
+        row = self.ui.studentTableWidget.rowCount()
+        self.ui.studentTableWidget.setRowCount(row + 1)
+
+        self.loadStudentTableItems(row, fullName, email, group)
+
+        self.con.insert_student(fullName, email, group)
+        self.closeStudentWindow()
+
+    def closeTeacherWindow(self):
+        self.teacherWindow.close()
+        self.teacherUi.addButton.clicked.disconnect()
+
+    def closeStudentWindow(self):
+        self.studentWindow.close()
+        self.studentUi.addButton.clicked.disconnect()
+
+    def addStudentWindowOpen(self):
+        self.studentUi.groupBox.clear()
+        self.studentUi.fullNameInput.setText('')
+        self.studentUi.emailInput.setText('')
+        self.studentUi.addButton.setText('Добавить')
+
+        self.studentUi.groupBox.addItems(self.con.get_groups())
+
+        self.studentUi.addButton.clicked.connect(self.addButtonClicked)
+        self.studentWindow.show()
 
     def schedulesFrame(self):
         selectedDate = self.ui.calendarWidget.selectedDate().toPython()
@@ -152,11 +161,6 @@ class MainWindow(QMainWindow):
                     count += 1
                 else:
                     self.ui.adminSheduleTable.cellWidget(row, column).setCurrentIndex(0)
-
-    def menuButtonToggled(self, toggle):
-        self.ui.leftMenu.setVisible(toggle)
-        self.ui.leftMenu_2.setHidden(toggle)
-        self.ui.mainWindows.setCurrentIndex(toggle)
 
     def changedCell(self, row, column):
         if not self.check:
@@ -206,27 +210,22 @@ class MainWindow(QMainWindow):
             self.dragStartPos = event.pos()
 
     def moveWindow(self, event):
-        self.move(event.globalPos() - self.dragStartPos)
+        child = self.childAt(event.pos())
 
-    def load_group_teacher(self, button=''):
-        lesson = self.ui.lessonBox.currentText().split(',')[0]
-        group = self.ui.groupBox.currentText()
-        if group == '':
+        if not child:
             return
-        rows = self.con.get_students_group(group)
-        columns = self.con.get_groups_date_lesson(group, lesson)
-        items = self.con.get_groups_rating_lesson(group, lesson)
 
-        items_ = [(' '.join([names for names in item[:3]]), item[3], item[4]) for item in items]
-        rows_ = [' '.join([names for names in row]) for row in rows]
-
-        self.load_tale_widget(rows_, columns, items_)
+        if child.objectName() != 'topMenu':
+            return
+        self.move(event.globalPos() - self.dragStartPos)
 
     def showMinMaxWindow(self):
         if MainWindow.isMaximized(self):
             MainWindow.showNormal(self)
         else:
             MainWindow.showMaximized(self)
+
+    # LOAD FUNCTIONS
 
     def load(self, button):
         # print(self.user[3])
@@ -341,7 +340,8 @@ class MainWindow(QMainWindow):
         dateList = [self.ui.ratingWidget.horizontalHeaderItem(i).text() for i in
                     range(self.ui.ratingWidget.columnCount()) if
                     self.ui.ratingWidget.horizontalHeaderItem(i).text() != '']
-        lessonList = [self.ui.ratingWidget.verticalHeaderItem(i).text() for i in range(self.ui.ratingWidget.rowCount())
+        lessonList = [self.ui.ratingWidget.verticalHeaderItem(i).text() for i in
+                      range(self.ui.ratingWidget.rowCount())
                       if self.ui.ratingWidget.verticalHeaderItem(i).text()]
 
         for item in items:
@@ -354,3 +354,148 @@ class MainWindow(QMainWindow):
                 continue
             qItem.setText(f'{qItem.text()},{item[1]}')
         self.check = True
+
+    def load_group_teacher(self, button=''):
+        lesson = self.ui.lessonBox.currentText().split(',')[0]
+        group = self.ui.groupBox.currentText()
+        if group == '':
+            return
+        rows = self.con.get_students_group(group)
+        columns = self.con.get_groups_date_lesson(group, lesson)
+        items = self.con.get_groups_rating_lesson(group, lesson)
+
+        items_ = [(' '.join([names for names in item[:3]]), item[3], item[4]) for item in items]
+        rows_ = [' '.join([names for names in row]) for row in rows]
+
+        self.load_tale_widget(rows_, columns, items_)
+
+    def loadSchedulesFrame(self):
+        groups = self.con.get_groups()
+        self.ui.adminSheduleTable.setColumnCount(len(groups))
+        cellSizeHorizontal = 190
+        self.ui.adminSheduleTable.setMinimumSize(cellSizeHorizontal * len(groups) + 15, 461)
+        self.ui.adminSheduleTable.setMaximumSize(cellSizeHorizontal * len(groups) + 15, 461)
+        self.ui.adminSheduleTable.setHorizontalHeaderLabels(groups)
+        for column in range(self.ui.adminSheduleTable.columnCount()):
+            currentGroup = self.ui.adminSheduleTable.horizontalHeaderItem(column).text()
+            lessons = self.con.get_lessons_group(currentGroup)
+            lessons_ = [f'{lesson[0]} {lesson[1]}\n{lesson[3]} {lesson[2][0]}. {lesson[4][0]}.' for lesson in lessons]
+            for row in range(self.ui.adminSheduleTable.rowCount()):
+                scheduleComboBox = TableQComboBox(column, row, self.con, self.ui)
+                scheduleComboBox.addItem('Нет занятий')
+                scheduleComboBox.addItems(lessons_)
+                scheduleComboBox.currentTextChanged.connect(scheduleComboBox.updateSQLDate)
+                self.ui.adminSheduleTable.setCellWidget(row, column, scheduleComboBox)
+        self.schedulesFrame()
+
+    def loadStudentsTable(self):
+        students = self.con.get_students_all()
+        rowCount = len(students)
+        self.ui.studentTableWidget.setRowCount(rowCount)
+        for row in range(rowCount):
+            id, sName, sFirstname, sSecondName, email, group, index = students[row]
+            sFullName = f'{sFirstname} {sName} {sSecondName}'
+            self.loadStudentTableItems(row, sFullName, email, group)
+
+    def loadStudentTableItems(self, row, name, email, group):
+
+        itemFIO = QTableWidgetItem(name)
+        self.ui.studentTableWidget.setItem(row, 0, itemFIO)
+
+        itemEmail = QTableWidgetItem(email)
+        self.ui.studentTableWidget.setItem(row, 1, itemEmail)
+
+        itemGroup = QTableWidgetItem(group)
+        self.ui.studentTableWidget.setItem(row, 2, itemGroup)
+
+        qWidget = QWidget()
+        qHLayout = QHBoxLayout(qWidget)
+        qHLayout.setContentsMargins(0, 0, 0, 0)
+        itemEdit = TableQPushButton(row, self)
+        itemEdit.setObjectName('edit-' + str(row))
+        itemEdit.setStyleSheet(u"QPushButton {\n"
+                               "	border-top-right-radius: 12px;\n"
+                               "}\n"
+                               "QPushButton::hover {\n"
+                               "	background-color: rgb(36, 58, 72);\n"
+                               "}\n"
+                               "")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/logout.svg", QSize(), QIcon.Normal, QIcon.Off)
+        itemEdit.setIcon(icon1)
+        itemEdit.clicked.connect(itemEdit.openEditStudentWindow)
+        qHLayout.addWidget(itemEdit)
+
+        itemDelete = TableQPushButton(row, self)
+        itemDelete.setObjectName('delete-' + str(row))
+        itemDelete.setStyleSheet(u"QPushButton {\n"
+                                 "	border-top-right-radius: 12px;\n"
+                                 "}\n"
+                                 "QPushButton::hover {\n"
+                                 "	background-color: rgb(36, 58, 72);\n"
+                                 "}\n"
+                                 "")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/close.svg", QSize(), QIcon.Normal, QIcon.Off)
+        itemDelete.setIcon(icon2)
+        itemDelete.clicked.connect(itemDelete.deleteStudent)
+        qHLayout.addWidget(itemDelete)
+
+        self.ui.studentTableWidget.setCellWidget(row, 3, qWidget)
+
+    def loadTeachersTable(self):
+        teachers = self.con.get_teachers()
+        rowCount = len(teachers)
+        self.ui.teacherTableWidget.setRowCount(rowCount)
+        for row in range(rowCount):
+            id, sName, sFirstname, sSecondName, email, index = teachers[row]
+            lessons = [' '.join([lesson[0], lesson[1]]) for lesson in self.con.get_lessons_teacher(email)]
+            lessons_ = '\n'.join(lessons)
+            sFullName = f'{sFirstname} {sName} {sSecondName}'
+            self.loadTeachersTableItems(row, sFullName, email, lessons_)
+
+    def loadTeachersTableItems(self, row, name, email, lessons):
+
+        itemFIO = QTableWidgetItem(name)
+        self.ui.teacherTableWidget.setItem(row, 0, itemFIO)
+
+        itemEmail = QTableWidgetItem(email)
+        self.ui.teacherTableWidget.setItem(row, 1, itemEmail)
+
+        itemGroup = QTableWidgetItem(lessons)
+        self.ui.teacherTableWidget.setItem(row, 2, itemGroup)
+
+        qWidget = QWidget()
+        qHLayout = QHBoxLayout(qWidget)
+        qHLayout.setContentsMargins(0, 0, 0, 0)
+        itemEdit = TableQPushButton(row, self)
+        itemEdit.setObjectName('edit-' + str(row))
+        itemEdit.setStyleSheet(u"QPushButton {\n"
+                               "	border-top-right-radius: 12px;\n"
+                               "}\n"
+                               "QPushButton::hover {\n"
+                               "	background-color: rgb(36, 58, 72);\n"
+                               "}\n"
+                               "")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/logout.svg", QSize(), QIcon.Normal, QIcon.Off)
+        itemEdit.setIcon(icon1)
+        itemEdit.clicked.connect(itemEdit.openEditTeacherWindow)
+        qHLayout.addWidget(itemEdit)
+
+        itemDelete = TableQPushButton(row, self)
+        itemDelete.setObjectName('delete-' + str(row))
+        itemDelete.setStyleSheet(u"QPushButton {\n"
+                                 "	border-top-right-radius: 12px;\n"
+                                 "}\n"
+                                 "QPushButton::hover {\n"
+                                 "	background-color: rgb(36, 58, 72);\n"
+                                 "}\n"
+                                 "")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/images/close.svg", QSize(), QIcon.Normal, QIcon.Off)
+        itemDelete.setIcon(icon2)
+        itemDelete.clicked.connect(itemDelete.deleteTeacher)
+        qHLayout.addWidget(itemDelete)
+
+        self.ui.teacherTableWidget.setCellWidget(row, 3, qWidget)

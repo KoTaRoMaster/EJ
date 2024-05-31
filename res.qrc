@@ -1,13 +1,14 @@
 <RCC>
   <qresource prefix="icons">
-    <file>images/close_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/dark_mode_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/delete_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/download_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/logout_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/menu_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/minimize_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/remove_FILL0_wght400_GRAD0_opsz24.svg</file>
-    <file>images/toast_FILL0_wght400_GRAD0_opsz24.svg</file>
+    <file>images/close.png</file>
+    <file>images/close.svg</file>
+    <file>images/dark_mode.svg</file>
+    <file>images/delete.svg</file>
+    <file>images/download.svg</file>
+    <file>images/logout.svg</file>
+    <file>images/menu.svg</file>
+    <file>images/minimize.svg</file>
+    <file>images/remove.svg</file>
+    <file>images/toast.svg</file>
   </qresource>
 </RCC>

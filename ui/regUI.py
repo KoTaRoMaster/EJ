@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMainWindow
-from ui import mainUI, reg_ui
+from ui import mainUI
 from data_sql import Connect
 
 

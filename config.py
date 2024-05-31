@@ -1,4 +1,4 @@
-host = "127.0.0.1"
-user = "root"
-password = ""
-db_name = "moscow_industrial_college"
+host = "dilefonb.beget.tech"
+user = "dilefonb_d"
+password = "Diplom2024"
+db_name = "dilefonb_d"
