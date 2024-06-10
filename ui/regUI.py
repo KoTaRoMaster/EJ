@@ -6,17 +6,20 @@ from ui import mainUI
 from data_sql import Connect
 
 
-from Windows import RegistrationWindow
+from Windows.RegistrationWindow import Ui_RegistrationWindow
 
 class RegWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.ui = RegistrationWindow.Ui_MainWindow()
+        self.ui = Ui_RegistrationWindow()
         self.ui.setupUi(self)
 
         self.con = Connect()
 
+        for user in self.con.get_users():
+            print(user)
+        print('-'*30)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WA_NoSystemBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -66,4 +69,7 @@ class RegWindow(QMainWindow):
         self.ui.emailEdit.setText('')
         self.ui.passwordEdit.setText('')
         self.ui.enterButton.setText('Войти')
+
+        self.ui.enterButton.clicked.disconnect()
+        self.ui.enterButton.clicked.connect(self.enterButtonClicked)
 

@@ -21,13 +21,13 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
 import res_rc
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(640, 480)
-        MainWindow.setStyleSheet(u"")
-        self.centralwidget = QWidget(MainWindow)
+class Ui_RegistrationWindow(object):
+    def setupUi(self, Ui_RegistrationWindow):
+        if not Ui_RegistrationWindow.objectName():
+            Ui_RegistrationWindow.setObjectName(u"MainWindow")
+        Ui_RegistrationWindow.resize(640, 480)
+        Ui_RegistrationWindow.setStyleSheet(u"")
+        self.centralwidget = QWidget(Ui_RegistrationWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
                                          "	border: 2px solid rgb(220, 220, 220);\n"
@@ -156,12 +156,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.frame)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        Ui_RegistrationWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        self.closeButton.clicked.connect(MainWindow.close)
+        self.retranslateUi(Ui_RegistrationWindow)
+        self.closeButton.clicked.connect(Ui_RegistrationWindow.close)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(Ui_RegistrationWindow)
 
     # setupUi
 

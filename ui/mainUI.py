@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QButtonGroup, QTableWidgetItem, QAbstractItemView, QWidget, QHBoxLayout
-from PySide6.QtGui import QIcon, QFontDatabase
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QSize
 from PySide6.QtSvg import QSvgRenderer
 
@@ -8,6 +8,7 @@ from Windows.StudentWindow import Ui_StudentWindow
 from Windows.TeacherWindow import Ui_TeacherWindow
 from Windows.LessonWiindow import Ui_LessonWindow
 from Windows.GroupWindow import Ui_GroupWindow
+from Windows.RegistrationWindow import Ui_RegistrationWindow
 
 from CustomClasses.TableQPushButton import TableQPushButton
 from CustomClasses.TableQComboBox import TableQComboBox
@@ -17,11 +18,11 @@ import re
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, user, con: Connect=''):
+    def __init__(self, user, con: Connect):
         QMainWindow.__init__(self)
 
-        self.con = Connect()
-        self.user = self.con.get_user(user)
+        self.con = con
+        self.user = user
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -118,6 +119,8 @@ class MainWindow(QMainWindow):
 
         self.ui.topMenu.mouseMoveEvent = self.moveWindow
 
+        self.ui.leaveButton.clicked.connect(self.leaveButtonClick)
+
         self.load()
 
     def adminButtons(self, button):
@@ -136,6 +139,8 @@ class MainWindow(QMainWindow):
             case 4:
                 self.loadLessonsTable()
 
+    def leaveButtonClick(self):
+        self.close()
     # Start StudentWindow
 
     def closeStudentWindow(self):
@@ -260,11 +265,11 @@ class MainWindow(QMainWindow):
         self.teacherUi.lessonBox1.clear()
         self.teacherUi.lessonBox2.clear()
 
-        groups = self.con.get_all_groups()
+        groups = [''] + self.con.get_all_groups()
         self.teacherUi.groupBox.addItems(groups)
 
         lessons = self.con.get_all_lessons()
-        lessons = [lesson[0] for lesson in lessons]
+        lessons = [' '.join(lesson) for lesson in lessons]
         lessons_ = [''] + lessons
         self.teacherUi.lessonBox1.addItems(lessons_)
         self.teacherUi.lessonBox2.addItems(lessons_)
@@ -874,3 +879,4 @@ class MainWindow(QMainWindow):
                 scheduleComboBox.currentTextChanged.connect(scheduleComboBox.updateSQLDate)
                 self.ui.adminSheduleTable.setCellWidget(row, column, scheduleComboBox)
         self.schedulesFrame()
+

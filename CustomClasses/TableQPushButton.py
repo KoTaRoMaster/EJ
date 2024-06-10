@@ -84,13 +84,14 @@ class TableQPushButton(QPushButton):
 
         rows = self.ui.ui.teacherTableWidget.rowCount()
         for row in range(self.row, rows):
-            item = self.ui.ui.teacherTableWidget.cellWidget(row, 3).children()
+            item = self.ui.ui.teacherTableWidget.cellWidget(row, 4).children()
             editItem = item[1]
             deleteItem = item[2]
             editItem.row -= 1
             deleteItem.row -= 1
 
     def openEditTeacherWindow(self):
+
         sName = self.ui.ui.teacherTableWidget.item(self.row, 0).text()
         email = self.ui.ui.teacherTableWidget.item(self.row, 1).text()
         lessons = self.ui.ui.teacherTableWidget.item(self.row, 2).text()

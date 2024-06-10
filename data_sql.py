@@ -598,9 +598,11 @@ class Connect:
             self.cursor.execute(insert_group_teacher_query)
 
             for lesson in lessons:
+                lesson_ = lesson.split(' ')[:-1][0]
                 insert_teacher_lesson_query = ("INSERT INTO `teacher_lessons` (`teacher_id`, `lesson_id`) "
                                                f"VALUES((SELECT t.id FROM `teachers` as t WHERE t.name = '{sName}' AND t.first_name = '{sFirstName}' AND t.second_name = '{sSecondName}'),"
-                                               f"(SELECT l.id FROM `lessons` as l WHERE l.lesson = '{lesson}'))")
+                                               f"(SELECT l.id FROM `lessons` as l WHERE l.lesson = '{lesson_}'))")
+                print(insert_teacher_lesson_query)
                 self.cursor.execute(insert_teacher_lesson_query)
 
             insert_teacher_user_query = (f"INSERT INTO `users` (`email`, `type`) VALUES('{email}','teacher')")
@@ -654,7 +656,7 @@ class Connect:
             update_teacher_query = (f"UPDATE `teachers` as t SET t.name = '{sName}', "
                                     f"t.first_name = '{sFirstName}', "
                                     f"t.second_name = '{sSecondName}', "
-                                    f"`email` = '{prevEmail}' "
+                                    f"`email` = '{email}' "
                                     f"WHERE t.id = '{teacher_id}'")
             self.cursor.execute(update_teacher_query)
 
@@ -849,4 +851,4 @@ class Connect:
         except Exception as ex:
             print(f'Exception: {ex}, Time: {datetime.now()}')
             self.connect()
-            return self.update_lesson(lesson, index)
+            return self.delete_lesson(lesson, index)
