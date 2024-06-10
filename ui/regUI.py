@@ -1,37 +1,69 @@
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QLineEdit
+from PySide6.QtCore import Qt
+from PySide6.QtSvg import QSvgRenderer
+
 from ui import mainUI
 from data_sql import Connect
 
+
+from Windows import RegistrationWindow
 
 class RegWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.ui = reg_ui.Ui_MainWindow()
+        self.ui = RegistrationWindow.Ui_MainWindow()
         self.ui.setupUi(self)
 
         self.con = Connect()
 
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.setAttribute(Qt.WA_NoSystemBackground, True)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+
+        self.ui.passwortFrame.setHidden(True)
+
         self.ui.enterButton.clicked.connect(self.enterButtonClicked)
+        self.ui.passwordButton.clicked.connect(self.swapPassword)
 
     def enterButtonClicked(self):
         email = self.ui.emailEdit.text()
-        password = self.ui.passwordEdit.text()
-
         user = self.con.get_user(email)
 
         if not user:
             print('Ошибка, неправильно введена почта.')
             return
 
+        self.ui.passwortFrame.setHidden(False)
         if not user[2]:
-            print('У вас отсутствует пароль, хотите зарегестрироваться?')
+            self.ui.enterButton.setText('Зарегестрироваться')
+            self.ui.enterButton.clicked.disconnect()
+            self.ui.emailEdit.setReadOnly(True)
+            self.ui.enterButton.clicked.connect(self.registrationButtonClicked)
             return
 
+        password = self.ui.passwordEdit.text()
         if user[2] != password:
-            print('Ошибка, неправильно введён пароль.')
             return
 
         self.close()
-        self.MainWindow = mainUI.MainWindow(user)
+        self.MainWindow = mainUI.MainWindow(user, self.con)
         self.MainWindow.show()
+
+    def swapPassword(self, state):
+        if state:
+            self.ui.passwordEdit.setEchoMode(QLineEdit.Normal)
+        else:
+            self.ui.passwordEdit.setEchoMode(QLineEdit.Password)
+
+    def registrationButtonClicked(self):
+        email = self.ui.emailEdit.text()
+        password = self.ui.passwordEdit.text()
+
+        self.con.registration_user(email, password)
+
+        self.ui.emailEdit.setReadOnly(False)
+        self.ui.emailEdit.setText('')
+        self.ui.passwordEdit.setText('')
+        self.ui.enterButton.setText('Войти')
+

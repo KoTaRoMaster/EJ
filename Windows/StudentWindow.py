@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'StudentWindowAuAbPL.ui'
+## Form generated from reading UI file 'StudentWindowcZWqUW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -29,40 +29,78 @@ class Ui_StudentWindow(object):
         self.centralwidget = QWidget(StudentWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
-"	background-color: rgb(43, 45, 49);\n"
+"	border: 2px solid rgb(220, 220, 220);\n"
+"	border-radius: 12px;\n"
+"	background-color: rgb(35, 36, 40);\n"
 "}\n"
-"\n"
-"QLineEdit {\n"
-"	background-color: rgb(71, 80, 83);\n"
+"QFrame {\n"
 "	border: none;\n"
 "}\n"
 "\n"
-"QLabel {\n"
-"	color: rgb(148, 155, 164);\n"
-"}\n"
-"QComboBox {\n"
-"	border: 1px solid rgb(148, 155, 164);\n"
-"	background-color: rgb(71, 80, 83);\n"
-"	color: rgb(221, 255, 255);\n"
+"QFrame QWidget{\n"
+"	border: none;\n"
+"	color: rgb(220, 220, 220);\n"
+"	font: 18pt ;\n"
 "}\n"
 "\n"
 "QPushButton {\n"
-"	color: rgb(221, 255, 255);\n"
-"	background-color: rgb(71, 80, 83);\n"
-"	border: 1px solid rgb(148, 155, 164)\n"
+"	outline-color: transparent;\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
 "}\n"
 "\n"
-"QPushButton::hover {\n"
-"	color: rgb(184, 212, 212);\n"
-"	background-color: rgb(61, 69, 72);\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(53, 54, 60);\n"
 "}\n"
 "\n"
-"QPushButton::pressed {\n"
-"	color: rgb(134, 182, 182);\n"
-"	background-color: rgb(34, 39, 40);\n"
-"}")
+"QPushButton:pressed {\n"
+"	background-color: rgb(74, 77, 84);\n"
+" }\n"
+"\n"
+"QLineEdit {\n"
+"	border:none;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font:18pt;\n"
+"	border-radius: 8px;\n"
+"	color: rgb(230, 230, 230);\n"
+"}\n"
+"\n"
+"QComboBox {\n"
+"	border-radius: 4px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"	font: 12px;\n"
+"	color: rgb(220, 220, 220);\n"
+"	border-radius: 0px;\n"
+"}\n"
+"\n"
+"QCom"
+                        "boBox QAbstractItemView::item {\n"
+"	background-color: rgb(43, 45, 49);\n"
+"    border: none;\n"
+"    selection-background-color: lightgray;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::selected {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::hover {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"}\n"
+"\n"
+"")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(15, 15, 15, 15)
         self.FullNameFrame = QFrame(self.centralwidget)
         self.FullNameFrame.setObjectName(u"FullNameFrame")
         self.FullNameFrame.setFrameShape(QFrame.StyledPanel)
@@ -109,6 +147,7 @@ class Ui_StudentWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label_3 = QLabel(self.GroupFrame)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setMaximumSize(QSize(90, 16777215))
 
         self.horizontalLayout_3.addWidget(self.label_3)
 

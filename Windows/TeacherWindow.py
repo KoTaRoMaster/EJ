@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'TeacherWindowkyOqfV.ui'
+## Form generated from reading UI file 'TeacherWindowyJcyrh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -29,38 +29,74 @@ class Ui_TeacherWindow(object):
         self.centralwidget = QWidget(TeacherWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
-"	background-color: rgb(43, 45, 49);\n"
+"	border: 2px solid rgb(220, 220, 220);\n"
+"	border-radius: 12px;\n"
+"	background-color: rgb(35, 36, 40);\n"
 "}\n"
-"\n"
-"QLineEdit {\n"
-"	background-color: rgb(71, 80, 83);\n"
+"QFrame {\n"
 "	border: none;\n"
 "}\n"
 "\n"
-"QLabel {\n"
-"	color: rgb(148, 155, 164);\n"
-"}\n"
-"QComboBox {\n"
-"	border: 1px solid rgb(148, 155, 164);\n"
-"	background-color: rgb(71, 80, 83);\n"
-"	color: rgb(221, 255, 255);\n"
+"QFrame QWidget{\n"
+"	border: none;\n"
+"	color: rgb(220, 220, 220);\n"
+"	font: 18pt ;\n"
 "}\n"
 "\n"
 "QPushButton {\n"
-"	color: rgb(221, 255, 255);\n"
-"	background-color: rgb(71, 80, 83);\n"
-"	border: 1px solid rgb(148, 155, 164)\n"
+"	outline-color: transparent;\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
 "}\n"
 "\n"
-"QPushButton::hover {\n"
-"	color: rgb(184, 212, 212);\n"
-"	background-color: rgb(61, 69, 72);\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(53, 54, 60);\n"
 "}\n"
 "\n"
-"QPushButton::pressed {\n"
-"	color: rgb(134, 182, 182);\n"
-"	background-color: rgb(34, 39, 40);\n"
-"}")
+"QPushButton:pressed {\n"
+"	background-color: rgb(74, 77, 84);\n"
+" }\n"
+"\n"
+"QLineEdit {\n"
+"	border:none;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font:18pt;\n"
+"	border-radius: 8px;\n"
+"	color: rgb(230, 230, 230);\n"
+"}\n"
+"\n"
+"QComboBox {\n"
+"	border-radius: 4px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"	font: 12px;\n"
+"	color: rgb(220, 220, 220);\n"
+"	border-radius: 0px;\n"
+"}\n"
+"\n"
+"QCom"
+                        "boBox QAbstractItemView::item {\n"
+"	background-color: rgb(43, 45, 49);\n"
+"    border: none;\n"
+"    selection-background-color: lightgray;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::selected {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::hover {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"}\n"
+"\n"
+"")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -117,13 +153,14 @@ class Ui_TeacherWindow(object):
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.label_4 = QLabel(self.TeacherFrame)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setMaximumSize(QSize(160, 16777215))
 
         self.horizontalLayout_5.addWidget(self.label_4)
 
-        self.groupBox_2 = QComboBox(self.TeacherFrame)
-        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox = QComboBox(self.TeacherFrame)
+        self.groupBox.setObjectName(u"groupBox")
 
-        self.horizontalLayout_5.addWidget(self.groupBox_2)
+        self.horizontalLayout_5.addWidget(self.groupBox)
 
 
         self.verticalLayout.addWidget(self.TeacherFrame)
@@ -138,6 +175,7 @@ class Ui_TeacherWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.label_3 = QLabel(self.LessonFrame1)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setMaximumSize(QSize(160, 16777215))
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
@@ -159,6 +197,7 @@ class Ui_TeacherWindow(object):
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.label_5 = QLabel(self.LessonFrame2)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setMaximumSize(QSize(160, 16777215))
 
         self.horizontalLayout_6.addWidget(self.label_5)
 
@@ -194,7 +233,6 @@ class Ui_TeacherWindow(object):
         TeacherWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(TeacherWindow)
-        self.cancelButton.clicked.connect(TeacherWindow.close)
 
         QMetaObject.connectSlotsByName(TeacherWindow)
     # setupUi

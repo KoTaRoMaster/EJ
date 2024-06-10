@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>images/visibility_lock.svg</file>
     <file>images/close.png</file>
     <file>images/close.svg</file>
     <file>images/dark_mode.svg</file>
