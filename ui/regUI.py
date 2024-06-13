@@ -17,9 +17,6 @@ class RegWindow(QMainWindow):
 
         self.con = Connect()
 
-        for user in self.con.get_users():
-            print(user)
-        print('-'*30)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WA_NoSystemBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -32,6 +29,9 @@ class RegWindow(QMainWindow):
     def enterButtonClicked(self):
         email = self.ui.emailEdit.text()
         user = self.con.get_user(email)
+
+        self.ui.errorEmailLabel.setText('')
+        self.ui.errorLabel.setText('')
 
         if not email:
             self.ui.errorEmailLabel.setText('Поле не должно быть пустым, введите почту.')
@@ -62,9 +62,13 @@ class RegWindow(QMainWindow):
 
 
         self.hide()
-        self.MainWindow = mainUI.MainWindow(user, self.con)
+        self.MainWindow = mainUI.MainWindow(user, self.con, self)
         self.MainWindow.show()
-        self.show()
+
+        self.ui.errorEmailLabel.setText('')
+        self.ui.errorLabel.setText('')
+        self.ui.emailEdit.setText('')
+        self.ui.passwordEdit.setText('')
 
     def swapPassword(self, state):
         if state:
@@ -74,8 +78,31 @@ class RegWindow(QMainWindow):
 
     def registrationButtonClicked(self):
         email = self.ui.emailEdit.text()
+        user = self.con.get_user(email)
         password = self.ui.passwordEdit.text()
 
+        self.ui.errorLabel.setText('')
+        self.ui.errorEmailLabel.setText('')
+
+        check = False
+        if not email:
+            self.ui.errorEmailLabel.setText('Поле не должно быть пустым, введите почту.')
+            check = True
+
+        if not user:
+            self.ui.errorEmailLabel.setText('Ошибка! Не правильно введёна почта.')
+            check = True
+
+        if len(password) < 8:
+            self.ui.errorLabel.setText('Ошибка! Пароль должен быть не мменее 8 символов.')
+            check = True
+
+        if not password:
+            self.ui.errorLabel.setText('Поле не должно быть пустым, введите пароль.')
+            check = True
+
+        if check:
+            return
         self.con.registration_user(email, password)
 
         self.ui.emailEdit.setReadOnly(False)

@@ -17,15 +17,12 @@ import re
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, user = '', con: Connect = ''):
+    def __init__(self, user, con: Connect, regUi: QMainWindow):
         QMainWindow.__init__(self)
 
-
-        self.con = Connect()
-        self.user = self.con.get_user('admin@mail.ru')
-
-        for user in self.con.get_users():
-            print(user)
+        self.con = con
+        self.user = user
+        self.regUi = regUi
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -144,6 +141,9 @@ class MainWindow(QMainWindow):
 
     def leaveButtonClick(self):
         self.close()
+        self.regUi.show()
+
+
     # Start StudentWindow
 
     def closeStudentWindow(self):
