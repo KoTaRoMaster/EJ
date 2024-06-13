@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GroupWindowMDkgwn.ui'
+## Form generated from reading UI file 'GroupWindowjTKVgX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -9,18 +9,17 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform)
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
-                               QFrame, QHBoxLayout, QHeaderView, QLabel,
-                               QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-                               QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QFrame, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 import res_rc
-
 
 class Ui_GroupWindow(object):
     def setupUi(self, GroupWindow):
@@ -30,102 +29,102 @@ class Ui_GroupWindow(object):
         self.centralwidget = QWidget(GroupWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
-                                         "	border: 2px solid rgb(220, 220, 220);\n"
-                                         "	border-radius: 12px;\n"
-                                         "	background-color: rgb(35, 36, 40);\n"
-                                         "}\n"
-                                         "QFrame {\n"
-                                         "	border: none;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QFrame QWidget{\n"
-                                         "	border: none;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "	font: 18pt ;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton {\n"
-                                         "	outline-color: transparent;\n"
-                                         "	border-radius: 8px;\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "	font: 18pt ;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton:hover {\n"
-                                         "	background-color: rgb(53, 54, 60);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton:pressed {\n"
-                                         "	background-color: rgb(74, 77, 84);\n"
-                                         " }\n"
-                                         "\n"
-                                         "QLineEdit {\n"
-                                         "	border:none;\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "	font:18pt;\n"
-                                         "	border-radius: 8px;\n"
-                                         "	color: rgb(230, 230, 230);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QComboBox {\n"
-                                         "	border-radius: 4px;\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "	font: 18pt ;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QComboBox QAbstractItemView {\n"
-                                         "	font: 12px;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "	border-radius: 0px;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QCom"
-                                         "boBox QAbstractItemView::item {\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "    border: none;\n"
-                                         "    selection-background-color: lightgray;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QComboBox QAbstractItemView::item::selected {\n"
-                                         "	background-color: rgb(30, 31, 34);\n"
-                                         "\n"
-                                         "}\n"
-                                         "\n"
-                                         "QComboBox QAbstractItemView::item::hover {\n"
-                                         "	background-color: rgb(30, 31, 34);\n"
-                                         "}\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "QHeaderView::section, QTableWidget QTableCornerButton::section {\n"
-                                         "	background-color: rgb(71, 80, 83);\n"
-                                         "    border: 1px solid #fffff8;\n"
-                                         "	font: 12pt \"Roboto\";\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QTableWidget {\n"
-                                         "	background-color: rgb(30, 31, 34);\n"
-                                         "    gridline-color: #fffff8;\n"
-                                         "	font:11pt \"Roboto\";\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "}\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "")
+"	border: 2px solid rgb(220, 220, 220);\n"
+"	border-radius: 12px;\n"
+"	background-color: rgb(35, 36, 40);\n"
+"}\n"
+"QFrame {\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QFrame QWidget{\n"
+"	border: none;\n"
+"	color: rgb(220, 220, 220);\n"
+"	font: 18pt ;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"	outline-color: transparent;\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(53, 54, 60);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(74, 77, 84);\n"
+" }\n"
+"\n"
+"QLineEdit {\n"
+"	border:none;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font:18pt;\n"
+"	border-radius: 8px;\n"
+"	color: rgb(230, 230, 230);\n"
+"}\n"
+"\n"
+"QComboBox {\n"
+"	border-radius: 4px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"	font: 12px;\n"
+"	color: rgb(220, 220, 220);\n"
+"	border-radius: 0px;\n"
+"}\n"
+"\n"
+"QCom"
+                        "boBox QAbstractItemView::item {\n"
+"	background-color: rgb(43, 45, 49);\n"
+"    border: none;\n"
+"    selection-background-color: lightgray;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::selected {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item::hover {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QHeaderView::section, QTableWidget QTableCornerButton::section {\n"
+"	background-color: rgb(71, 80, 83);\n"
+"    border: 1px solid #fffff8;\n"
+"	font: 12pt \"Roboto\";\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QTableWidget {\n"
+"	background-color: rgb(30, 31, 34);\n"
+"    gridline-color: #fffff8;\n"
+"	font:11pt \"Roboto\";\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -134,10 +133,13 @@ class Ui_GroupWindow(object):
         self.EmailFrame.setObjectName(u"EmailFrame")
         self.EmailFrame.setFrameShape(QFrame.StyledPanel)
         self.EmailFrame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.EmailFrame)
-        self.horizontalLayout_2.setSpacing(9)
+        self.verticalLayout_2 = QVBoxLayout(self.EmailFrame)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(-1, 0, 0, 0)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(10)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.label_2 = QLabel(self.EmailFrame)
         self.label_2.setObjectName(u"label_2")
 
@@ -147,6 +149,18 @@ class Ui_GroupWindow(object):
         self.groupInput.setObjectName(u"groupInput")
 
         self.horizontalLayout_2.addWidget(self.groupInput)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+        self.groupErrorLabel = QLabel(self.EmailFrame)
+        self.groupErrorLabel.setObjectName(u"groupErrorLabel")
+        self.groupErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.groupErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_2.addWidget(self.groupErrorLabel)
+
 
         self.verticalLayout.addWidget(self.EmailFrame)
 
@@ -194,6 +208,7 @@ class Ui_GroupWindow(object):
 
         self.horizontalLayout.addWidget(self.deleteLesson)
 
+
         self.verticalLayout.addWidget(self.frame)
 
         self.Buttons = QFrame(self.centralwidget)
@@ -214,6 +229,7 @@ class Ui_GroupWindow(object):
 
         self.horizontalLayout_4.addWidget(self.cancelButton)
 
+
         self.verticalLayout.addWidget(self.Buttons)
 
         GroupWindow.setCentralWidget(self.centralwidget)
@@ -221,21 +237,17 @@ class Ui_GroupWindow(object):
         self.retranslateUi(GroupWindow)
 
         QMetaObject.connectSlotsByName(GroupWindow)
-
     # setupUi
 
     def retranslateUi(self, GroupWindow):
         GroupWindow.setWindowTitle(QCoreApplication.translate("GroupWindow", u"MainWindow", None))
         self.label_2.setText(QCoreApplication.translate("GroupWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None))
+        self.groupErrorLabel.setText("")
         ___qtablewidgetitem = self.groupLessonTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(
-            QCoreApplication.translate("GroupWindow", u"\u041f\u0440\u0435\u0434\u043c\u0435\u0442", None))
-        self.addLesson.setText(
-            QCoreApplication.translate("GroupWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.deleteLesson.setText(
-            QCoreApplication.translate("GroupWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
-        self.addButton.setText(
-            QCoreApplication.translate("GroupWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.cancelButton.setText(
-            QCoreApplication.translate("GroupWindow", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("GroupWindow", u"\u041f\u0440\u0435\u0434\u043c\u0435\u0442", None));
+        self.addLesson.setText(QCoreApplication.translate("GroupWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.deleteLesson.setText(QCoreApplication.translate("GroupWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.addButton.setText(QCoreApplication.translate("GroupWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.cancelButton.setText(QCoreApplication.translate("GroupWindow", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
     # retranslateUi
+

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'StudentWindowcZWqUW.ui'
+## Form generated from reading UI file 'StudentWindowNAaxvY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -105,7 +105,12 @@ class Ui_StudentWindow(object):
         self.FullNameFrame.setObjectName(u"FullNameFrame")
         self.FullNameFrame.setFrameShape(QFrame.StyledPanel)
         self.FullNameFrame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.FullNameFrame)
+        self.verticalLayout_2 = QVBoxLayout(self.FullNameFrame)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 47, 0, 0)
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(6)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(self.FullNameFrame)
         self.label.setObjectName(u"label")
@@ -118,23 +123,48 @@ class Ui_StudentWindow(object):
         self.horizontalLayout.addWidget(self.fullNameInput)
 
 
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+
+        self.fioErrorLabel = QLabel(self.FullNameFrame)
+        self.fioErrorLabel.setObjectName(u"fioErrorLabel")
+        self.fioErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.fioErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_2.addWidget(self.fioErrorLabel)
+
+
         self.verticalLayout.addWidget(self.FullNameFrame)
 
         self.EmailFrame = QFrame(self.centralwidget)
         self.EmailFrame.setObjectName(u"EmailFrame")
         self.EmailFrame.setFrameShape(QFrame.StyledPanel)
         self.EmailFrame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.EmailFrame)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout_3 = QVBoxLayout(self.EmailFrame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 47, 0, 0)
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label_2 = QLabel(self.EmailFrame)
         self.label_2.setObjectName(u"label_2")
 
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.horizontalLayout_3.addWidget(self.label_2)
 
         self.emailInput = QLineEdit(self.EmailFrame)
         self.emailInput.setObjectName(u"emailInput")
 
-        self.horizontalLayout_2.addWidget(self.emailInput)
+        self.horizontalLayout_3.addWidget(self.emailInput)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+
+        self.emailErrorLabel = QLabel(self.EmailFrame)
+        self.emailErrorLabel.setObjectName(u"emailErrorLabel")
+        self.emailErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.emailErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_3.addWidget(self.emailErrorLabel)
 
 
         self.verticalLayout.addWidget(self.EmailFrame)
@@ -143,18 +173,32 @@ class Ui_StudentWindow(object):
         self.GroupFrame.setObjectName(u"GroupFrame")
         self.GroupFrame.setFrameShape(QFrame.StyledPanel)
         self.GroupFrame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.GroupFrame)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.verticalLayout_4 = QVBoxLayout(self.GroupFrame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 47, 0, 0)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_3 = QLabel(self.GroupFrame)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setMaximumSize(QSize(90, 16777215))
 
-        self.horizontalLayout_3.addWidget(self.label_3)
+        self.horizontalLayout_2.addWidget(self.label_3)
 
         self.groupBox = QComboBox(self.GroupFrame)
         self.groupBox.setObjectName(u"groupBox")
 
-        self.horizontalLayout_3.addWidget(self.groupBox)
+        self.horizontalLayout_2.addWidget(self.groupBox)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_2)
+
+        self.groupErrorLabel = QLabel(self.GroupFrame)
+        self.groupErrorLabel.setObjectName(u"groupErrorLabel")
+        self.groupErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.groupErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_4.addWidget(self.groupErrorLabel)
 
 
         self.verticalLayout.addWidget(self.GroupFrame)
@@ -188,8 +232,11 @@ class Ui_StudentWindow(object):
     def retranslateUi(self, StudentWindow):
         StudentWindow.setWindowTitle(QCoreApplication.translate("StudentWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("StudentWindow", u"\u0424\u0418\u041e", None))
+        self.fioErrorLabel.setText("")
         self.label_2.setText(QCoreApplication.translate("StudentWindow", u"\u041f\u043e\u0447\u0442\u0430", None))
+        self.emailErrorLabel.setText("")
         self.label_3.setText(QCoreApplication.translate("StudentWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None))
+        self.groupErrorLabel.setText("")
         self.addButton.setText(QCoreApplication.translate("StudentWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.cancelButton.setText(QCoreApplication.translate("StudentWindow", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
     # retranslateUi

@@ -8,7 +8,6 @@ from Windows.StudentWindow import Ui_StudentWindow
 from Windows.TeacherWindow import Ui_TeacherWindow
 from Windows.LessonWiindow import Ui_LessonWindow
 from Windows.GroupWindow import Ui_GroupWindow
-from Windows.RegistrationWindow import Ui_RegistrationWindow
 
 from CustomClasses.TableQPushButton import TableQPushButton
 from CustomClasses.TableQComboBox import TableQComboBox
@@ -18,11 +17,15 @@ import re
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, user, con: Connect):
+    def __init__(self, user = '', con: Connect = ''):
         QMainWindow.__init__(self)
 
-        self.con = con
-        self.user = user
+
+        self.con = Connect()
+        self.user = self.con.get_user('admin@mail.ru')
+
+        for user in self.con.get_users():
+            print(user)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -144,6 +147,9 @@ class MainWindow(QMainWindow):
     # Start StudentWindow
 
     def closeStudentWindow(self):
+        self.studentUi.fioErrorLabel.setText('')
+        self.studentUi.emailErrorLabel.setText('')
+        self.studentUi.groupErrorLabel.setText('')
         self.studentWindow.close()
         self.studentUi.addButton.clicked.disconnect()
 
@@ -167,18 +173,28 @@ class MainWindow(QMainWindow):
         pattern = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
         email_ = pattern.search(email)
 
+        self.studentUi.fioErrorLabel.setText('')
+        self.studentUi.emailErrorLabel.setText('')
+        self.studentUi.groupErrorLabel.setText('')
+
         check = False
         if not 2 <= len(fullName_) <= 3:
-            print('Неправильно введено ФИО')
+            self.studentUi.fioErrorLabel.setText('Ошибка! Введите как минимум имя и фамилию.')
             check = True
 
+        if not fullName:
+            self.studentUi.fioErrorLabel.setText('Поле не должно быть пустым.')
+
         if not email_:
-            print('Неправильно почта')
+            self.studentUi.emailErrorLabel.setText('Ошибка! Не правильно введена почта.')
             check = True
 
         if self.con.get_user(email):
-            print('Уже есть пользователь с такой почтой')
+            self.studentUi.emailErrorLabel.setText('Пользователь с такой почтой уже существует.')
             check = True
+
+        if not email:
+            self.studentUi.emailErrorLabel.setText('Поле не должно быть пустым.')
 
         if check:
             return
@@ -253,6 +269,10 @@ class MainWindow(QMainWindow):
 
     # Start TeacherWindow
     def closeTeacherWindow(self):
+        self.teacherUi.FullNameErrorLabel.setText('')
+        self.teacherUi.emailErrorLabel.setText('')
+        self.teacherUi.teacherErrorLabel.setText('')
+        self.teacherUi.lessonErrorLabel1.setText('')
         self.teacherWindow.close()
         self.teacherUi.addButton.clicked.disconnect()
 
@@ -289,20 +309,37 @@ class MainWindow(QMainWindow):
         email_ = pattern.search(email)
 
         check = False
+
+        self.teacherUi.FullNameErrorLabel.setText('')
+        self.teacherUi.emailErrorLabel.setText('')
+        self.teacherUi.teacherErrorLabel.setText('')
+        self.teacherUi.lessonErrorLabel1.setText('')
+
         if not 2 <= len(fullName_) <= 3:
-            print('Неправильно введено ФИО')
+            self.teacherUi.FullNameErrorLabel.setText('Ошибка! Введите как минимум имя и фамилию.')
             check = True
+
+        if not fullName:
+            self.teacherUi.FullNameErrorLabel.setText('Поле не должно быть пустым.')
+
         if not email_:
-            print('Неправильно почта')
+            self.teacherUi.emailErrorLabel.setText('Ошибка! Не правильно введена почта.')
             check = True
+
         if self.con.get_user(email):
-            print('Уже есть пользователь с такой почтой')
+            self.teacherUi.emailErrorLabel.setText('Пользователь с такой почтой уже существует.')
             check = True
+
+        if not email:
+            self.teacherUi.emailErrorLabel.setText('Поле не должно быть пустым.')
+
         if lesson1 == lesson2 == '':
-            print('Выберите хотя бы 1 предмет')
+            self.teacherUi.lessonErrorLabel1.setText('Ошибка! Выберите как минимум 1 предмет.')
             check = True
+
         if check:
             return
+
         lessons = []
         if lesson1:
             lessons.append(lesson1)
@@ -312,13 +349,13 @@ class MainWindow(QMainWindow):
         if len(lessons) == 2:
             lessons_ = '\n'.join(lessons)
 
-        row = self.ui.teacherTableWidget.rowCount()
-        self.ui.teacherTableWidget.setRowCount(row + 1)
+        # row = self.ui.teacherTableWidget.rowCount()
+        # self.ui.teacherTableWidget.setRowCount(row + 1)
 
-        self.loadTeachersTableItems(row, fullName, email, lessons_, group)
-
-        self.con.insert_teacher(fullName, email, lessons, group)
-        self.closeTeacherWindow()
+        # self.loadTeachersTableItems(row, fullName, email, lessons_, group)
+        #
+        # self.con.insert_teacher(fullName, email, lessons, group)
+        # self.closeTeacherWindow()
 
     def loadTeachersTable(self):
         teachers = self.con.get_teachers()
@@ -386,6 +423,7 @@ class MainWindow(QMainWindow):
 
     # Start GroupWindow
     def closeGroupWindow(self):
+        self.groupUi.groupErrorLabel.setText('')
         self.groupWindow.close()
         self.groupUi.addButton.clicked.disconnect()
         self.groupUi.addLesson.clicked.disconnect()
@@ -456,24 +494,32 @@ class MainWindow(QMainWindow):
 
         pattern = re.compile(r'^[А-Я]+[-]+[0-4]+[-]+\d{2}+$')
         group_ = pattern.search(group)
-        lessons_ = '\n'.join(lessons)
+
+        self.groupUi.groupErrorLabel.setText('')
+
         check = False
 
         if not group_:
-            print('Неправильно группа')
+            self.groupUi.groupErrorLabel.setText('Не правильно введён формат группы. Пример: ИСП-4-20')
             check = True
 
         if self.con.get_group_id(group):
-            print('Такая группа уже существует')
+            self.groupUi.groupErrorLabel.setText('Такая группа уже существует.')
             check = True
+
+        if not group:
+            self.groupUi.groupErrorLabel.setText('Поле не должно быть пустым.')
 
         if check:
             return
+
+        lessons_ = '\n'.join(lessons)
 
         row = self.ui.groupTableWidget.rowCount()
         self.ui.groupTableWidget.setRowCount(row + 1)
 
         self.loadGroupTableItems(row, lessons_, group)
+
 
         self.con.insert_group(group, lessons_)
         self.closeGroupWindow()
@@ -538,6 +584,8 @@ class MainWindow(QMainWindow):
 
     # Start LessonWindow
     def closeLessonWindow(self):
+        self.lessonUi.lessonErrorLabel.setText('')
+        self.lessonUi.indexErrorLabel.setText('')
         self.lessonWindow.close()
         self.lessonUi.addButton.clicked.disconnect()
 
@@ -553,8 +601,28 @@ class MainWindow(QMainWindow):
         lesson = self.lessonUi.lessonInput.text()
         index = self.lessonUi.indexInput.text()
 
+        self.lessonUi.lessonErrorLabel.setText('')
+        self.lessonUi.indexErrorLabel.setText('')
+
+        check = False
+
         if self.con.get_lesson_id(lesson):
-            print('Nакой предмет уже существует')
+            self.lessonUi.lessonErrorLabel.setText('Такой предмет уже существует.')
+            check = True
+
+        if not lesson:
+            self.lessonUi.lessonErrorLabel.setText('Поле не должно быть пустым.')
+            check = True
+
+        if self.con.get_index_lesson(index):
+            self.lessonUi.indexErrorLabel.setText('Такой код уже существует.')
+            check = True
+
+        if not index:
+            self.lessonUi.indexErrorLabel.setText('Поле не должно быть пустым.')
+            check = True
+
+        if check:
             return
 
         row = self.ui.lessonTableWidget.rowCount()

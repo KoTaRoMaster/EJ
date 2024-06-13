@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'LessonWindowxggURB.ui'
+## Form generated from reading UI file 'LessonWindowKcbWjg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -108,10 +108,13 @@ class Ui_LessonWindow(object):
         self.EmailFrame.setObjectName(u"EmailFrame")
         self.EmailFrame.setFrameShape(QFrame.StyledPanel)
         self.EmailFrame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.EmailFrame)
-        self.horizontalLayout_2.setSpacing(9)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2 = QVBoxLayout(self.EmailFrame)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 74, 0, 0)
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(10)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_2 = QLabel(self.EmailFrame)
         self.label_2.setObjectName(u"label_2")
         font = QFont()
@@ -121,12 +124,23 @@ class Ui_LessonWindow(object):
         font.setItalic(False)
         self.label_2.setFont(font)
 
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.horizontalLayout.addWidget(self.label_2)
 
         self.lessonInput = QLineEdit(self.EmailFrame)
         self.lessonInput.setObjectName(u"lessonInput")
 
-        self.horizontalLayout_2.addWidget(self.lessonInput)
+        self.horizontalLayout.addWidget(self.lessonInput)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+
+        self.lessonErrorLabel = QLabel(self.EmailFrame)
+        self.lessonErrorLabel.setObjectName(u"lessonErrorLabel")
+        self.lessonErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.lessonErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_2.addWidget(self.lessonErrorLabel)
 
 
         self.verticalLayout.addWidget(self.EmailFrame)
@@ -135,20 +149,34 @@ class Ui_LessonWindow(object):
         self.EmailFrame_2.setObjectName(u"EmailFrame_2")
         self.EmailFrame_2.setFrameShape(QFrame.StyledPanel)
         self.EmailFrame_2.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.EmailFrame_2)
-        self.horizontalLayout_3.setSpacing(9)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3 = QVBoxLayout(self.EmailFrame_2)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 72, 0, 0)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(10)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_3 = QLabel(self.EmailFrame_2)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setFont(font)
 
-        self.horizontalLayout_3.addWidget(self.label_3)
+        self.horizontalLayout_2.addWidget(self.label_3)
 
         self.indexInput = QLineEdit(self.EmailFrame_2)
         self.indexInput.setObjectName(u"indexInput")
 
-        self.horizontalLayout_3.addWidget(self.indexInput)
+        self.horizontalLayout_2.addWidget(self.indexInput)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+
+        self.indexErrorLabel = QLabel(self.EmailFrame_2)
+        self.indexErrorLabel.setObjectName(u"indexErrorLabel")
+        self.indexErrorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.indexErrorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_3.addWidget(self.indexErrorLabel)
 
 
         self.verticalLayout.addWidget(self.EmailFrame_2)
@@ -186,7 +214,9 @@ class Ui_LessonWindow(object):
     def retranslateUi(self, LessonWindow):
         LessonWindow.setWindowTitle(QCoreApplication.translate("LessonWindow", u"MainWindow", None))
         self.label_2.setText(QCoreApplication.translate("LessonWindow", u"\u041f\u0440\u0435\u0434\u043c\u0435\u0442", None))
+        self.lessonErrorLabel.setText("")
         self.label_3.setText(QCoreApplication.translate("LessonWindow", u"\u041a\u043e\u0434", None))
+        self.indexErrorLabel.setText("")
         self.addButton.setText(QCoreApplication.translate("LessonWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.cancelButton.setText(QCoreApplication.translate("LessonWindow", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
     # retranslateUi

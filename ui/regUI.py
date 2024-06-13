@@ -24,7 +24,7 @@ class RegWindow(QMainWindow):
         self.setAttribute(Qt.WA_NoSystemBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
 
-        self.ui.passwortFrame.setHidden(True)
+        self.ui.passwortFrame.setVisible(False)
 
         self.ui.enterButton.clicked.connect(self.enterButtonClicked)
         self.ui.passwordButton.clicked.connect(self.swapPassword)
@@ -33,25 +33,38 @@ class RegWindow(QMainWindow):
         email = self.ui.emailEdit.text()
         user = self.con.get_user(email)
 
-        if not user:
-            print('Ошибка, неправильно введена почта.')
+        if not email:
+            self.ui.errorEmailLabel.setText('Поле не должно быть пустым, введите почту.')
             return
 
-        self.ui.passwortFrame.setHidden(False)
+        if not user:
+            self.ui.errorEmailLabel.setText('Ошибка! Не правильно введёна почта.')
+            return
+
+        self.ui.errorEmailLabel.setText('')
         if not user[2]:
+            self.ui.passwortFrame.setVisible(True)
             self.ui.enterButton.setText('Зарегестрироваться')
             self.ui.enterButton.clicked.disconnect()
             self.ui.emailEdit.setReadOnly(True)
             self.ui.enterButton.clicked.connect(self.registrationButtonClicked)
             return
 
-        password = self.ui.passwordEdit.text()
-        if user[2] != password:
+        if not self.ui.passwortFrame.isVisible():
+            self.ui.passwortFrame.setVisible(True)
             return
 
-        self.close()
+        password = self.ui.passwordEdit.text()
+        if user[2] != password:
+            self.ui.errorLabel.setText('Ошибка! Не правильно введён пароль.')
+            return
+
+
+
+        self.hide()
         self.MainWindow = mainUI.MainWindow(user, self.con)
         self.MainWindow.show()
+        self.show()
 
     def swapPassword(self, state):
         if state:

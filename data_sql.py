@@ -86,12 +86,19 @@ class Connect:
                                      "AND t.email IS NOT NULL")
             self.cursor.execute(insert_teachers_query)
 
+            insert_admins_query = ("INSERT INTO `users` (`email`,`type`) "
+                                   "SELECT `email`,`type` "
+                                   "FROM `admins` as a "
+                                   "WHERE NOT EXISTS(SELECT * FROM `users` as u  WHERE a.email = u.email) "
+                                   "AND a.email IS NOT NULL")
+            self.cursor.execute(insert_admins_query)
+
             self.connection.commit()
             print('Insert users complete')
         except Exception as ex:
             print(f'Exception: {ex}, Time: {datetime.now()}')
             self.connect()
-            return self.get_users
+            return self.insert_users()
 
     def get_students_all(self):
         try:
@@ -653,6 +660,9 @@ class Connect:
             self.cursor.execute(query)
             teacher_id = self.cursor.fetchone()[0]
 
+            update_user_query = (f"UPDATE `users` as u SET u.email = '{email}' WHERE u.email = '{prevEmail}'")
+            self.cursor.execute(update_user_query)
+
             update_teacher_query = (f"UPDATE `teachers` as t SET t.name = '{sName}', "
                                     f"t.first_name = '{sFirstName}', "
                                     f"t.second_name = '{sSecondName}', "
@@ -677,7 +687,6 @@ class Connect:
                     f"(SELECT l.id FROM `lessons` as l WHERE l.lesson = '{lesson_}'))")
                 self.cursor.execute(insert_teacher_lessons_query)
             self.connection.commit()
-            self.insert_users()
 
         except Exception as ex:
             print(f'Exception: {ex}, Time: {datetime.now()}')
@@ -704,6 +713,8 @@ class Connect:
 
             lessons_ = lessons.split('\n')
             for lesson in lessons_:
+                if not lesson:
+                    continue
                 lesson_ = ' '.join(lesson.split()[:-1])
 
                 insert_group_lessons_query = (
@@ -852,3 +863,14 @@ class Connect:
             print(f'Exception: {ex}, Time: {datetime.now()}')
             self.connect()
             return self.delete_lesson(lesson, index)
+
+    def get_index_lesson(self, index):
+        try:
+            query = (f"SELECT l.lesson FROM `lessons` as l WHERE l.index = '{index}'")
+            self.cursor.execute(query)
+            row = self.cursor.fetchone()
+            return row
+        except Exception as ex:
+            print(f'Exception: {ex}, Time: {datetime.now()}')
+            self.connect()
+            return self.get_index_lesson(index)

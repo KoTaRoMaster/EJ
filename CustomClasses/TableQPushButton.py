@@ -53,18 +53,28 @@ class TableQPushButton(QPushButton):
         pattern = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
         email_ = pattern.search(email)
 
+        self.ui.studentUi.fioErrorLabel.setText('')
+        self.ui.studentUi.emailErrorLabel.setText('')
+        self.ui.studentUi.groupErrorLabel.setText('')
+
         check = False
         if not 2 <= len(fullName_) <= 3:
-            print('Неправильно введено ФИО')
+            self.ui.studentUi.fioErrorLabel.setText('Ошибка! Введите как минимум имя и фамилию.')
             check = True
 
+        if not fullName:
+            self.ui.studentUi.fioErrorLabel.setText('Поле не должно быть пустым.')
+
         if not email_:
-            print('Неправильно почта')
+            self.ui.studentUi.emailErrorLabel.setText('Ошибка! Не правильно введена почта.')
             check = True
 
         if self.ui.con.get_user(email) and prevEmail.text() != email:
-            print('Уже есть пользователь с такой почтой')
+            self.ui.studentUi.emailErrorLabel.setText('Пользователь с такой почтой уже существует.')
             check = True
+
+        if not email:
+            self.ui.studentUi.emailErrorLabel.setText('Поле не должно быть пустым.')
 
         if check:
             return
@@ -91,7 +101,6 @@ class TableQPushButton(QPushButton):
             deleteItem.row -= 1
 
     def openEditTeacherWindow(self):
-
         sName = self.ui.ui.teacherTableWidget.item(self.row, 0).text()
         email = self.ui.ui.teacherTableWidget.item(self.row, 1).text()
         lessons = self.ui.ui.teacherTableWidget.item(self.row, 2).text()
@@ -138,20 +147,32 @@ class TableQPushButton(QPushButton):
         email_ = pattern.search(email)
 
         check = False
+
+        self.ui.teacherUi.FullNameErrorLabel.setText('')
+        self.ui.teacherUi.emailErrorLabel.setText('')
+        self.ui.teacherUi.teacherErrorLabel.setText('')
+        self.ui.teacherUi.lessonErrorLabel1.setText('')
+
         if not 2 <= len(fullName_) <= 3:
-            print('Неправильно введено ФИО')
+            self.ui.teacherUi.FullNameErrorLabel.setText('Ошибка! Введите как минимум имя и фамилию.')
             check = True
 
+        if not fullName:
+            self.ui.teacherUi.FullNameErrorLabel.setText('Поле не должно быть пустым.')
+
         if not email_:
-            print('Неправильно почта')
+            self.ui.teacherUi.emailErrorLabel.setText('Ошибка! Не правильно введена почта.')
             check = True
 
         if self.ui.con.get_user(email) and prevEmail.text() != email:
-            print('Уже есть пользователь с такой почтой')
+            self.ui.teacherUi.emailErrorLabel.setText('Пользователь с такой почтой уже существует.')
             check = True
 
+        if not email:
+            self.ui.teacherUi.emailErrorLabel.setText('Поле не должно быть пустым.')
+
         if lesson1 == lesson2 == '':
-            print('Выберите хотя бы 1 предмет')
+            self.ui.teacherUi.lessonErrorLabel1.setText('Ошибка! Выберите как минимум 1 предмет.')
             check = True
 
         if check:
@@ -282,8 +303,28 @@ class TableQPushButton(QPushButton):
         lesson = self.ui.lessonUi.lessonInput.text()
         index = self.ui.lessonUi.indexInput.text()
 
+        self.ui.lessonUi.lessonErrorLabel.setText('')
+        self.ui.lessonUi.indexErrorLabel.setText('')
+
+        check = False
+
         if self.ui.con.get_lesson_id(lesson) and prevLesson.text() != lesson:
-            print('Nакой предмет уже существует')
+            self.ui.lessonUi.lessonErrorLabel.setText('Такой предмет уже существует.')
+            check = True
+
+        if not lesson:
+            self.ui.lessonUi.lessonErrorLabel.setText('Поле не должно быть пустым.')
+            check = True
+
+        if self.ui.con.get_index_lesson(index) and prevIndex.text() != index:
+            self.ui.lessonUi.indexErrorLabel.setText('Такой код уже существует.')
+            check = True
+
+        if not index:
+            self.ui.lessonUi.indexErrorLabel.setText('Поле не должно быть пустым.')
+            check = True
+
+        if check:
             return
 
         self.ui.con.update_lesson(lesson, index, prevLesson.text(), prevIndex.text())

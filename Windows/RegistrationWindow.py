@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'RegistrationWindowqcJKdm.ui'
+## Form generated from reading UI file 'RegistrationWindowibjyXF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -9,68 +9,67 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-                           QFont, QFontDatabase, QGradient, QIcon,
-                           QImage, QKeySequence, QLinearGradient, QPainter,
-                           QPalette, QPixmap, QRadialGradient, QTransform)
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-                               QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-                               QVBoxLayout, QWidget)
+    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
+    QVBoxLayout, QWidget)
 import res_rc
 
-
 class Ui_RegistrationWindow(object):
-    def setupUi(self, Ui_RegistrationWindow):
-        if not Ui_RegistrationWindow.objectName():
-            Ui_RegistrationWindow.setObjectName(u"MainWindow")
-        Ui_RegistrationWindow.resize(640, 480)
-        Ui_RegistrationWindow.setStyleSheet(u"")
-        self.centralwidget = QWidget(Ui_RegistrationWindow)
+    def setupUi(self, RegistrationWindow):
+        if not RegistrationWindow.objectName():
+            RegistrationWindow.setObjectName(u"RegistrationWindow")
+        RegistrationWindow.resize(640, 480)
+        RegistrationWindow.setStyleSheet(u"")
+        self.centralwidget = QWidget(RegistrationWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QWidget {\n"
-                                         "	border: 2px solid rgb(220, 220, 220);\n"
-                                         "	border-radius: 12px;\n"
-                                         "	background-color: rgb(35, 36, 40);\n"
-                                         "}\n"
-                                         "QFrame {\n"
-                                         "	border: none;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QFrame QWidget{\n"
-                                         "	border: none;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "	font: 18pt ;\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton {\n"
-                                         "	outline-color: transparent;\n"
-                                         "	border-radius: 8px;\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "	font: 18pt ;\n"
-                                         "	color: rgb(220, 220, 220);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton:hover {\n"
-                                         "	background-color: rgb(53, 54, 60);\n"
-                                         "}\n"
-                                         "\n"
-                                         "QPushButton:pressed {\n"
-                                         "	background-color: rgb(74, 77, 84);\n"
-                                         " }\n"
-                                         "\n"
-                                         "QLineEdit {\n"
-                                         "	border:none;\n"
-                                         "	background-color: rgb(43, 45, 49);\n"
-                                         "	font:18pt;\n"
-                                         "	border-radius: 8px;\n"
-                                         "	color: rgb(230, 230, 230);\n"
-                                         "}\n"
-                                         "\n"
-                                         "\n"
-                                         "\n"
-                                         "")
+"	border: 2px solid rgb(220, 220, 220);\n"
+"	border-radius: 12px;\n"
+"	background-color: rgb(35, 36, 40);\n"
+"}\n"
+"QFrame {\n"
+"	border: none;\n"
+"}\n"
+"\n"
+"QFrame QWidget{\n"
+"	border: none;\n"
+"	color: rgb(220, 220, 220);\n"
+"	font: 18pt ;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"	outline-color: transparent;\n"
+"	border-radius: 8px;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font: 18pt ;\n"
+"	color: rgb(220, 220, 220);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(53, 54, 60);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: rgb(74, 77, 84);\n"
+" }\n"
+"\n"
+"QLineEdit {\n"
+"	border:none;\n"
+"	background-color: rgb(43, 45, 49);\n"
+"	font:18pt;\n"
+"	border-radius: 8px;\n"
+"	color: rgb(230, 230, 230);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setSpacing(10)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -92,6 +91,17 @@ class Ui_RegistrationWindow(object):
         self.emailEdit.setObjectName(u"emailEdit")
 
         self.verticalLayout.addWidget(self.emailEdit)
+
+        self.errorEmailLabel = QLabel(self.frame_2)
+        self.errorEmailLabel.setObjectName(u"errorEmailLabel")
+        self.errorEmailLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.errorEmailLabel.setTextFormat(Qt.AutoText)
+        self.errorEmailLabel.setScaledContents(False)
+        self.errorEmailLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout.addWidget(self.errorEmailLabel)
+
 
         self.verticalLayout_3.addWidget(self.frame_2)
 
@@ -119,6 +129,7 @@ class Ui_RegistrationWindow(object):
         self.passwordEdit.setObjectName(u"passwordEdit")
         self.passwordEdit.setInputMask(u"")
         self.passwordEdit.setEchoMode(QLineEdit.Password)
+        self.passwordEdit.setReadOnly(False)
 
         self.horizontalLayout_2.addWidget(self.passwordEdit)
 
@@ -134,7 +145,19 @@ class Ui_RegistrationWindow(object):
 
         self.horizontalLayout_2.addWidget(self.passwordButton)
 
+
         self.verticalLayout_2.addWidget(self.passwordLine)
+
+        self.errorLabel = QLabel(self.passwortFrame)
+        self.errorLabel.setObjectName(u"errorLabel")
+        self.errorLabel.setStyleSheet(u"font: 9pt;\n"
+"color: rgb(209, 76, 64);")
+        self.errorLabel.setTextFormat(Qt.AutoText)
+        self.errorLabel.setScaledContents(False)
+        self.errorLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_2.addWidget(self.errorLabel)
+
 
         self.verticalLayout_3.addWidget(self.passwortFrame)
 
@@ -154,24 +177,26 @@ class Ui_RegistrationWindow(object):
 
         self.horizontalLayout.addWidget(self.closeButton)
 
+
         self.verticalLayout_3.addWidget(self.frame)
 
-        Ui_RegistrationWindow.setCentralWidget(self.centralwidget)
+        RegistrationWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Ui_RegistrationWindow)
-        self.closeButton.clicked.connect(Ui_RegistrationWindow.close)
+        self.retranslateUi(RegistrationWindow)
+        self.closeButton.clicked.connect(RegistrationWindow.close)
 
-        QMetaObject.connectSlotsByName(Ui_RegistrationWindow)
-
+        QMetaObject.connectSlotsByName(RegistrationWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0447\u0442\u0430", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
+    def retranslateUi(self, RegistrationWindow):
+        RegistrationWindow.setWindowTitle(QCoreApplication.translate("RegistrationWindow", u"MainWindow", None))
+        self.label_2.setText(QCoreApplication.translate("RegistrationWindow", u"\u041f\u043e\u0447\u0442\u0430", None))
+        self.errorEmailLabel.setText("")
+        self.label.setText(QCoreApplication.translate("RegistrationWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.passwordEdit.setText("")
         self.passwordButton.setText("")
-        self.enterButton.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0439\u0442\u0438", None))
-        self.closeButton.setText(
-            QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
+        self.errorLabel.setText("")
+        self.enterButton.setText(QCoreApplication.translate("RegistrationWindow", u"\u0412\u043e\u0439\u0442\u0438", None))
+        self.closeButton.setText(QCoreApplication.translate("RegistrationWindow", u"\u0417\u0430\u043a\u0440\u044b\u0442\u044c", None))
     # retranslateUi
+
