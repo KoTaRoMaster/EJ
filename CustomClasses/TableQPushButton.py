@@ -253,13 +253,15 @@ class TableQPushButton(QPushButton):
         pattern = re.compile(r'^[А-Я]+[-]+[0-4]+[-]+\d{2}+$')
         group_ = pattern.search(group)
 
+        self.ui.groupUi.groupErrorLabel.setText('')
+
         check = False
         if not group_:
-            print('Неправильно введена группа')
+            self.ui.groupUi.groupErrorLabel.setText('Неправильно введена группа')
             check = True
 
-        if self.ui.con.get_user(group) and prevGroup.text() != group:
-            print('Такая группа уже существует')
+        if self.ui.con.get_user(group) or prevGroup.text() != group:
+            self.ui.groupUi.groupErrorLabel.setText('Такая группа уже существует')
             check = True
 
         if check:

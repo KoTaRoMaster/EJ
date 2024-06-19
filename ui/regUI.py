@@ -2,11 +2,11 @@ from PySide6.QtWidgets import QMainWindow, QLineEdit
 from PySide6.QtCore import Qt
 from PySide6.QtSvg import QSvgRenderer
 
-from ui import mainUI
+from ui.mainUI import MainWindow
 from data_sql import Connect
 
-
 from Windows.RegistrationWindow import Ui_RegistrationWindow
+
 
 class RegWindow(QMainWindow):
     def __init__(self):
@@ -59,16 +59,15 @@ class RegWindow(QMainWindow):
             self.ui.errorLabel.setText('Ошибка! Не правильно введён пароль.')
             return
 
-
-
         self.hide()
-        self.MainWindow = mainUI.MainWindow(user, self.con, self)
+        self.MainWindow = MainWindow(user, self.con, self)
         self.MainWindow.show()
 
         self.ui.errorEmailLabel.setText('')
         self.ui.errorLabel.setText('')
         self.ui.emailEdit.setText('')
         self.ui.passwordEdit.setText('')
+        self.ui.passwortFrame.setVisible(False)
 
     def swapPassword(self, state):
         if state:
@@ -112,4 +111,3 @@ class RegWindow(QMainWindow):
 
         self.ui.enterButton.clicked.disconnect()
         self.ui.enterButton.clicked.connect(self.enterButtonClicked)
-

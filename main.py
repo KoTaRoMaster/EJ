@@ -1,6 +1,5 @@
 import sys
 from ui.regUI import RegWindow
-from ui.mainUI import MainWindow
 from PySide6.QtWidgets import QApplication
 
 if __name__ == "__main__":

@@ -349,13 +349,12 @@ class MainWindow(QMainWindow):
         if len(lessons) == 2:
             lessons_ = '\n'.join(lessons)
 
-        # row = self.ui.teacherTableWidget.rowCount()
-        # self.ui.teacherTableWidget.setRowCount(row + 1)
+        row = self.ui.teacherTableWidget.rowCount()
+        self.ui.teacherTableWidget.setRowCount(row + 1)
 
-        # self.loadTeachersTableItems(row, fullName, email, lessons_, group)
-        #
-        # self.con.insert_teacher(fullName, email, lessons, group)
-        # self.closeTeacherWindow()
+        self.loadTeachersTableItems(row, fullName, email, lessons_, group)
+        self.con.insert_teacher(fullName, email, lessons, group)
+        self.closeTeacherWindow()
 
     def loadTeachersTable(self):
         teachers = self.con.get_teachers()
@@ -520,7 +519,6 @@ class MainWindow(QMainWindow):
 
         self.loadGroupTableItems(row, lessons_, group)
 
-
         self.con.insert_group(group, lessons_)
         self.closeGroupWindow()
 
@@ -537,6 +535,7 @@ class MainWindow(QMainWindow):
             self.loadGroupTableItems(row, lessons_, groups[row])
 
     def loadGroupTableItems(self, row, lessons, group):
+
         itemGroup = QTableWidgetItem(group)
         self.ui.groupTableWidget.setItem(row, 0, itemGroup)
 
@@ -721,7 +720,6 @@ class MainWindow(QMainWindow):
             if rating[i] not in ratingList:
                 continue
             assessments += rating[i]
-
         result = ''
         for assessment in assessments:
             result += assessment + ','
@@ -799,7 +797,10 @@ class MainWindow(QMainWindow):
         self.ui.leftGroupLabel.setText('Группа')
         self.ui.rightGroupLabel.setText(user[4])
         self.ui.comboBoxFrame.setVisible(False)
-        self.ui.rightNameLabel.setText(f'{user[1]} {user[0][0]}. {user[2][0]}.')
+        NameFormat = f'{user[1]} {user[0][0]}. '
+        if user[2]:
+            NameFormat += f'{user[2][0]}.'
+        self.ui.rightNameLabel.setText(NameFormat)
 
         self.ui.ratingWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
@@ -821,7 +822,10 @@ class MainWindow(QMainWindow):
         self.ui.leftTypeLabel.setText('Учитель')
         self.ui.leftGroupLabel.setText('')
         self.ui.rightGroupLabel.setText('')
-        self.ui.rightNameLabel.setText(f'{user[2]} {user[1][0]}. {user[3][0]}.')
+        NameFormat = f'{user[2]} {user[1][0]}. '
+        if user[3]:
+            NameFormat += f'{user[3][0]}.'
+        self.ui.rightNameLabel.setText(NameFormat)
         self.ui.comboBoxFrame.setVisible(True)
 
         self.ui.ratingWidget.setEditTriggers(
@@ -851,7 +855,9 @@ class MainWindow(QMainWindow):
         columns = self.con.get_groups_date_lesson(group, lesson)
         items = self.con.get_groups_rating_lesson(group, lesson)
 
+
         items_ = [(' '.join([names for names in item[:3]]), item[3], item[4]) for item in items]
+
 
         rows_ = [' '.join([names for names in row]) for row in rows]
 
@@ -938,7 +944,7 @@ class MainWindow(QMainWindow):
         self.ui.adminSheduleTable.setHorizontalHeaderLabels(groups)
         for column in range(self.ui.adminSheduleTable.columnCount()):
             currentGroup = self.ui.adminSheduleTable.horizontalHeaderItem(column).text()
-            lessons = self.con.get_lessons_group(currentGroup)
+            lessons = self.con.get_lessons_and_teacher_group(currentGroup)
             lessons_ = [f'{lesson[0]} {lesson[1]}\n{lesson[3]} {lesson[2][0]}. {lesson[4]}.' for lesson in lessons]
             for row in range(self.ui.adminSheduleTable.rowCount()):
                 scheduleComboBox = TableQComboBox(column, row, self.con, self.ui)

@@ -308,8 +308,7 @@ class Connect:
                      "JOIN `students` as s ON s.id = r.student_id "
                      "JOIN `groups` as g ON g.id = s.group_id "
                      f"WHERE g.group = '{group}' "
-                     f"AND l.lesson = '{lesson}' "
-                     "ORDER BY r.date")
+                     f"AND l.lesson = '{lesson}'")
 
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
@@ -400,6 +399,24 @@ class Connect:
 
     def get_lessons_group(self, group):
         try:
+            query = ("SELECT l.lesson, l.index, g.group "
+                     "FROM `lessons` AS l "
+                     "JOIN `group_lessons` AS g_l ON g_l.lesson_id = l.id "
+                     "JOIN `groups` AS g ON g.id = g_l.group_id "
+                     f"WHERE g.group = '{group}'")
+            self.cursor.execute(query)
+            rows = self.cursor.fetchall()
+            # for row in rows:
+            #     print(row)
+            # print('*'*20)
+            return rows
+        except Exception as ex:
+            print(f'Exception: {ex}, Time: {datetime.now()}')
+            self.connect()
+            return self.get_lessons_group(group)
+
+    def get_lessons_and_teacher_group(self, group):
+        try:
             query = ("SELECT DISTINCT l.lesson, l.index, t.name, t.first_name, t.second_name, g.group "
                      "FROM `lessons` AS l "
                      "JOIN `group_lessons` AS g_l ON g_l.lesson_id = l.id "
@@ -416,7 +433,7 @@ class Connect:
         except Exception as ex:
             print(f'Exception: {ex}, Time: {datetime.now()}')
             self.connect()
-            return self.get_lessons_group(group)
+            return self.get_lessons_and_teacher_group(group)
 
     def get_schedule_group(self, date, group, id_count):
         try:
@@ -587,7 +604,6 @@ class Connect:
 
     def insert_teacher(self, name, email, lessons, group):
         try:
-
             name_ = name.split(' ')
             sName = name_[1]
             sFirstName = name_[0]
@@ -605,11 +621,10 @@ class Connect:
             self.cursor.execute(insert_group_teacher_query)
 
             for lesson in lessons:
-                lesson_ = lesson.split(' ')[:-1][0]
+                lesson_ = ' '.join(lesson.split(' ')[:-1])
                 insert_teacher_lesson_query = ("INSERT INTO `teacher_lessons` (`teacher_id`, `lesson_id`) "
                                                f"VALUES((SELECT t.id FROM `teachers` as t WHERE t.name = '{sName}' AND t.first_name = '{sFirstName}' AND t.second_name = '{sSecondName}'),"
                                                f"(SELECT l.id FROM `lessons` as l WHERE l.lesson = '{lesson_}'))")
-                print(insert_teacher_lesson_query)
                 self.cursor.execute(insert_teacher_lesson_query)
 
             insert_teacher_user_query = (f"INSERT INTO `users` (`email`, `type`) VALUES('{email}','teacher')")
@@ -670,10 +685,16 @@ class Connect:
                                     f"WHERE t.id = '{teacher_id}'")
             self.cursor.execute(update_teacher_query)
 
-            update_group_teacher = (f"UPDATE `group_teachers` as g_t SET g_t.group_id = "
-                                    f"(SELECT g.id FROM `groups` as g WHERE g.group = '{group}') "
+            delete_group_teacher = ("DELETE g_t FROM `group_teachers` as g_t "
                                     f"WHERE g_t.teacher_id = '{teacher_id}'")
-            self.cursor.execute(update_group_teacher)
+            self.cursor.execute(delete_group_teacher)
+
+            if group:
+                insert_group_teacher = ("INSERT INTO `group_teachers` (`group_id`, `teacher_id`) VALUES("
+                                        f"(SELECT g.id FROM `groups` as g WHERE g.group = '{group}'),"
+                                        f"(SELECT t.id FROM `teachers` as t WHERE t.name = '{sName}' AND "
+                                        f"t.first_name = '{sFirstName}' AND t.second_name = '{sSecondName}'))")
+                self.cursor.execute(insert_group_teacher)
 
             query = (f"DELETE t_l FROM `teacher_lessons` as t_l WHERE t_l.teacher_id = '{teacher_id}'")
             self.cursor.execute(query)
